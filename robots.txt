@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: 
+Disallow:
 
-Sitemap: http://slicerkao.github.io/sitemap.xml 
+Sitemap: http://slicerkao.github.io/sitemap.xml

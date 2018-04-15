@@ -26,54 +26,23 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!-- MathJax -->
+  <!-- mathjax config similar to math.stackexchange -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
     tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-        processEscapes: true
-    }
+      inlineMath: [ ['$', '$'] ],
+      displayMath: [ ['$$', '$$']],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea',
+        'pre', 'code']
+    },
+    messageStyle: "none",
+    "HTML-CSS": { preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"] }
   });
 </script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      skipTags: ['script',
-        'noscript', 'style',
-        'textarea', 'pre', 'code']
-    }
-  });
-</script>
-
-<script
-  type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function()
-    {
-    var
-    all =
-      MathJax.Hub.getAllJax(),
-      i;
-    for(i=0;
-      i
-      <
-      all.length;
-      i
-      +=
-      1)
-    {
-      all[i].SourceElement().parentNode.className
-        +=
-        '
-      has-jax';
-    }
-    });
-</script>
-
-<script
-  type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 
   
 
@@ -147,6 +116,13 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 <p>yet  is <script type="math/tex">\alpha</script></p>
 
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{align}
+\mbox{Union: } & A\cup B = \{x\mid x\in A \mbox{ or } x\in B\} \\
+\mbox{Concatenation: } & A\circ B  = \{xy\mid x\in A \mbox{ and } y\in B\} \\
+\mbox{Star: } & A^\star  = \{x_1x_2\ldots x_k \mid  k\geq 0 \mbox{ and each }
+x_i\in A\} \\
+\end{align} %]]></script>
 </div>
   
   

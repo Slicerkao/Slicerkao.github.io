@@ -4,7 +4,7 @@
   <title><![CDATA[Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-04-15T13:55:54+08:00</updated>
+  <updated>2018-04-15T14:03:25+08:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -21,6 +21,8 @@
     <content type="html"><![CDATA[<p>Hello world</p>
 
 <p>yet  is $alpha$</p>
+
+<p>random variables $X_1, X_2, X_3$ from</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-04-28T12:09:12+08:00</updated>
+  <updated>2018-04-29T23:10:42+08:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -14,17 +14,28 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Wait... What ?]]></title>
-    <link href="http://slicerkao.github.io/blog/2018/02/09/wait-dot-dot-dot-what/"/>
-    <updated>2018-02-09T15:38:51+08:00</updated>
-    <id>http://slicerkao.github.io/blog/2018/02/09/wait-dot-dot-dot-what</id>
-    <content type="html"><![CDATA[<p>Hello world</p>
+    <title type="html"><![CDATA[Study Note: Quantum Adiabatic Search (2001)]]></title>
+    <link href="http://slicerkao.github.io/blog/2018/04/29/study-note-quantum-adiabatic-search-2001/"/>
+    <updated>2018-04-29T18:29:47+08:00</updated>
+    <id>http://slicerkao.github.io/blog/2018/04/29/study-note-quantum-adiabatic-search-2001</id>
+    <content type="html"><![CDATA[<p>In this post, a quantum adiabatic method applied to search problem is summarized and commented. All the following context is based on $\rm Quantum \, Search \, by \, Local \, Adiabatic \, Evolution$ from J$\acute{e}$r$\acute{e}$mie Roland and Nicolas J. Cerf.</p>
 
-<p>$\alpha$ is alpha ? $\sum$ is sum.
-plp
-yets  is <script type="math/tex">\alpha</script></p>
+<p>$\bf 1. \, Adiabatic \, Theorem$</p>
 
-<p>dada??</p>
+<p>Given a time dependent Hamiltonian $H(t)$, let $\vert E_k \, ; t \rangle$ be the eigenstate of $H(t)$ such that:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; H(t)|E_k \, ; t\rangle = E_k(t)|E_k \, ; t\rangle
+\end{eqnarray}</p>
+
+<p>where $E_k$ denotes the k-th eigenvalue of the Hamiltonian. Also, define the minimum eigengap $g_{min}$ as:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; g_{min} = \mathop{\min}_{0 \leq t \leq T}|E_1(t)-E_0(t)| 
+\end{eqnarray}</p>
+
+<p>Then one version of the adiabatic theorem states that if $g_{min}$ within the evolution time $T$ is not too small (compared to the variation of the Hamiltonian), then the initial state $\vert E_0 \, ; t\rangle$ evolves to $\psi(T)$ that’s close to $\vert E_0 \, ; T\rangle$. Intuitively, larger eigengap implies less quantum transition from base state to the first activated state, and thus the wave fuction “stay” at the base state throughout the evolution.</p>
+
 ]]></content>
   </entry>
   

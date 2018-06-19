@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://slicerkao.github.io/blog/2018/06/19/study-note/</loc>
+<lastmod>2018-06-19T14:46:06+08:00</lastmod>
+</url>
+<url>
 <loc>http://slicerkao.github.io/blog/2018/04/29/study-note-quantum-adiabatic-search-2001/</loc>
 <lastmod>2018-04-29T18:29:47+08:00</lastmod>
 </url>
@@ -18,5 +22,8 @@
 </url>
 <url>
 <loc>http://slicerkao.github.io/blog/categories/quantum/</loc>
+</url>
+<url>
+<loc>http://slicerkao.github.io/blog/categories/probability/</loc>
 </url>
 </urlset>

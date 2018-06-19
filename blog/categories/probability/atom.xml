@@ -4,7 +4,7 @@
   <title><![CDATA[Category: probability | Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/blog/categories/probability/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-06-19T15:01:01+08:00</updated>
+  <updated>2018-06-19T16:03:07+08:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -31,7 +31,16 @@
 \end{eqnarray}
 <!--more--></p>
 
-<p>To prove this, note that the aim is to upper bound the expected value $E[Z]$; thus Jensen’s inequality comes in handy as :</p>
+<p>To prove this, note that the aim is to upper bound the expected value $E[X]$; thus Jensen’s inequality comes in handy:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; e^{t E[X]} \leq E[e^{t X}] = E[\mathop{\max}_{1\leq i \leq n} e^{t Z_i}] \leq \sum _{i=1} ^{n} E[e^{t Z_i}] \leq n e^{t^2 \sigma^2 /2}
+\end{eqnarray}</p>
+
+<p>Thus 
+\begin{eqnarray}
+&amp;&amp; E[X] \leq \frac{\log n}{t} + t \sigma ^2 /2 \leq \sigma \sqrt{2 \log n} 
+\end{eqnarray}</p>
 ]]></content>
   </entry>
   

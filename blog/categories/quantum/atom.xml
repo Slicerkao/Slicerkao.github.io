@@ -4,7 +4,7 @@
   <title><![CDATA[Category: quantum | Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/blog/categories/quantum/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-06-19T16:03:07+08:00</updated>
+  <updated>2018-07-18T12:32:55+08:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -22,7 +22,7 @@
 
 <!--more-->
 
-<p>$\bf 1. \, Adiabatic \, Theorem$</p>
+<h3 id="adiabatic-theorem">Adiabatic Theorem</h3>
 
 <p>Given a time dependent Hamiltonian $H(t)$, let $\vert E_k \, ; t \rangle$ be the eigenstate of $H(t)$ such that:</p>
 
@@ -56,7 +56,7 @@
 &amp;&amp; |\langle E_0;T|\psi(T)|^2 \geq 1- \epsilon^2
 \end{eqnarray}</p>
 
-<p>$\bf 2. \, A \, construction \, of \, adiabatic \, search \, algorithm$</p>
+<h3 id="a-construction-of-an-adiabatic-search-algorithm">A construction of an adiabatic search algorithm</h3>
 
 <p>Adiabatic thereom can  be appllied to construct a quantum search algorithm.
 Consider a problem to find $\vert m \rangle$ out of $N$ computational basis.  Let $\vert \psi_0 \rangle$ be a uniform superposition of computational basis:</p>
@@ -117,7 +117,7 @@ the adiabatic condition reads:</p>
 
 <p>which yields no benefit over classical algorithm.</p>
 
-<p>$\bf 3. \, A \, variant \, of \,the  \, interpolation \, rate \, s(t) $</p>
+<h3 id="a-variant-of-the-interpolation-rate-st">A variant of the interpolation rate s(t)</h3>
 
 <p>To achieve quantum speedup, notice that the adiabatic condition can be applied to a infinitesimal scale of time. That is, let $s(t)$ be an unknown function of $t$, and then impose the adiabatic condition:</p>
 

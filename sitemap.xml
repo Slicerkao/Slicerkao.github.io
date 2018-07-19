@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://slicerkao.github.io/blog/2018/07/11/study3/</loc>
+<lastmod>2018-07-11T21:25:48+08:00</lastmod>
+</url>
+<url>
+<loc>http://slicerkao.github.io/blog/2018/06/21/study2/</loc>
+<lastmod>2018-06-21T15:57:36+08:00</lastmod>
+</url>
+<url>
+<loc>http://slicerkao.github.io/blog/2018/06/19/study-note-2/</loc>
+<lastmod>2018-06-19T16:47:04+08:00</lastmod>
+</url>
+<url>
 <loc>http://slicerkao.github.io/blog/2018/06/19/study-note/</loc>
 <lastmod>2018-06-19T14:46:06+08:00</lastmod>
 </url>
@@ -25,5 +37,8 @@
 </url>
 <url>
 <loc>http://slicerkao.github.io/blog/categories/probability/</loc>
+</url>
+<url>
+<loc>http://slicerkao.github.io/blog/categories/machinelearning/</loc>
 </url>
 </urlset>

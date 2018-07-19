@@ -1,0 +1,363 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Understanding Generative Adversarial Net (1) - Tr{Ceng Lou}</title>
+  <meta name="author" content="Ping Sheng Kao">
+
+  
+  <meta name="description" content="Recently a bunch of Generative Adversarial Net (GAN) related research has boomed in the unsupervised learning community, and it seems interesting to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://slicerkao.github.io/blog/2018/07/11/study3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Tr{Ceng Lou}" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$', '$'] ],
+      displayMath: [ ['$$', '$$']],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea',
+        'pre', 'code']
+    },
+    messageStyle: "none",
+    "HTML-CSS": { preferredFont: "TeX",
+      availableFonts: ["STIX","TeX"] }
+  });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+  
+
+</head>
+
+<body >
+  <div id="container">
+    <header role="banner"><hgroup>
+  <h1><a href="/">Tr{Ceng Lou}</a></h1>
+  
+    <h2>Study Notes</h2>
+  
+</hgroup>
+
+</header>
+    <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="site:slicerkao.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+  <li><a href="/about">About</a></li>
+</ul>
+
+</nav>
+    <div id="main">
+      <div id="content">
+        <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title"><a href="">Understanding Generative Adversarial Net (1)</a></h1>
+    
+    
+      <div class="post-meta">
+        <p class="meta">
+          <span class="timestamp">- 
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2018-07-11T21:25:48+08:00" pubdate data-updated="true"></time> -</span>
+          
+        </p>
+      </div>
+    
+  </header>
+
+
+<div class="entry-content"><p>Recently a bunch of Generative Adversarial Net (GAN) related research has boomed in the unsupervised learning community, and it seems interesting to fully understand the mechanism of this novel learning framework. Just a few days ago (July 5th, 2018), Alexia Jolicoeur-Martineau et al proposed a <a href="https://arxiv.org/abs/1807.00734">Relativistic GAN</a> that aimed to provide improvement via changes of the discriminator term in the original GAN objective function. It pointed out that the real data are usually ignored during the learning process in most GAN paradigm, and thus it proposed a relativistic quantity to measure how ‘real’ the real samples are compared to the fake sample.</p>
+
+<p><img src="/images/de.png" alt="alt text" /></p>
+
+<!--more-->
+
+<p>It seems to to me that the original goal of GAN is to train the followings given the sampled real data sets $x_i \mathop{\sim}^{i.i.d} P$:</p>
+
+<ul>
+  <li>
+    <p>A generator $G_{\theta}(z)$ that has small distributional divergence with respect to the true distribution. This is the main goal of the generative learning paradigm.</p>
+  </li>
+  <li>
+    <p>A discriminator $D_{\omega}$ equipped with strong detection ability. This is rather a side product for GAN, but the training procedure relies on the detection result (e.g. the backpropagation for weight update.)</p>
+  </li>
+</ul>
+
+<h3 id="generator-perspective-minimization-of-the-divergence">Generator perspective: minimization of the divergence</h3>
+
+<p>For the first part, most GAN objective functions are some $f$ divergence with the following forms:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; D_f(P||Q) = \int_{\chi} q(x)f \Big( \frac{p(x)}{q(x)}\Big) dx
+\end{eqnarray}</p>
+
+<p>As pointed out in the <a href="https://arxiv.org/abs/1606.00709">$f$ GAN literature</a>, the $f$ divergence is approximated via a variational lower bound known as Frenchel conjugate $f^\ast$ (for all lower-semicontious function $f$). This conjugate is convex with the defintion:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; f^\ast (t) = \mathop{\sup}_{u \in {\rm dom}_f} [ut - f(u)]
+\end{eqnarray}</p>
+
+<p>Likewise, $f$ can be expressed in terms of $f^\ast$ since the pair $(f, f^\ast)$ are dual to each other. Plugging into the expression of the $f$ divergence, we have:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; D_f(P||Q) = \int_{\chi} q(x) \mathop{\sup}_{t \in {\rm
+dom} _{f^\ast}} \Big( t\frac{p(x)}{q(x)} - f^\ast(t) \Big) dx \newline 
+&amp;&amp; \geq \sup _{T(x) \in \mathcal{T}} \Big( \int _{\chi} p(x) T(x) dx - \int _{\chi} q(x) f^\ast (T(x)) \Big) \newline
+&amp;&amp; = \sup _{T(x) \in \mathcal{T}} (E _{x \sim P}[T(x)] - E _{x \sim Q}[f^ \ast (T(x))])
+\end{eqnarray}</p>
+
+<p>To achieve the tightest lower bound, $T(x) = \frac{df}{dx} \big(\frac{p(x)}{q(x)}\big)$. For instance, consider a $f$ divergence with $f(u) = u \log u - (u+1) \log (u+1)$, first compute the Frenchel dual as :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; f^\ast (t) = \mathop{\sup} _{u &gt; 0} [ut - u \log u + (u+1) \log(u+1)] \newline
+&amp;&amp; = - (t + \log (10^{-t} - 1)) \; , \; t &lt; 0 
+\end{eqnarray}</p>
+
+<p>So the variational lower bound for the $f$ divergence becomes :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \sup _{T(x) \in \mathcal{T}} (E _{x \sim P}[T(x)] + E _{x \sim Q}[\log (1 - exp(T(x)))])
+\end{eqnarray}</p>
+
+<p>Standard GAN adopts $T(x)$ with the form :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; T(x) = \log D_\omega(x) = 1/(1 + e^{-V_{\omega}(x)})
+\end{eqnarray}</p>
+
+<p>So the loss is the familiar form :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; L(\theta, \omega) = \mathop{\sup} _{D} [E _{x \sim P}[\log D _{\omega}(x)] + E _{x \sim G _{\theta}(P_z)}[\log (1 - D _{\omega}(x))]]
+\end{eqnarray}</p>
+
+<p>When $D(x)$ is optimal, it has $D(x) = \frac{p(x)}{p(x) + G_{\theta} (P_z)(x)}$, or with $Q_{\theta} = G_{\theta}(P_z)$ as a shorthand, $D(x) = \frac{p(x)}{p(x) + q_{\theta}(x)}$. Plugging it back to the variational bound, one can recover the J-S divergence in the literature. Thus with a perfect discriminator, the generator can be trained to minimize the divergence loss between generated distribution and the target distribution.</p>
+
+<h3 id="discriminator-perspective-optimal-detector">Discriminator perspective: Optimal Detector</h3>
+
+<p>The above arguments stand on a generator perspective, where the goal is to
+minmize a divergence measure (with high fidelity). On the other hand, we’ve seen that the optimal discriminator to construct JS divergence is actually a maximum likelihood detector. ML is also an optimal detector for hypthothesis testing with uniform prior, where the performance metric is the Bayesian risk. Such a correspondence between divergence measure and the optimal Bayesian detector is not a coincidence: The form of the standard GAN variational lower bound takes a log-likelihood expression. i.e, when jointly maximize the log of true alarm and negative probability, one get a J-S divergence measure with a Bayesian optimal detector.</p>
+
+<p>For more example, consider a variational objective with $0-1$ loss, i.e.,</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; L(\theta, \omega) = \mathop{\sup} _{D : \chi \to 0, 1} [ E _{x \sim P}[\mathbb{1}[D _{\omega}(x)]] + 
+E _{G _{\theta}(z) \sim Q}[1 - \mathbb{1}[D _{\omega}(G _{\theta}(x))]]]
+\end{eqnarray}</p>
+
+<p>This loss is exactly (up to a 1/2 prior probability) related to the Bayesian risk, and the maximization of it leads to a divergence measure called total variance $d_{\rm TV}(P,Q)$, defined as:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; d_{\rm TV}(P,Q) = \mathop{\sup}_{S \subset \chi} [P(S) - Q(S)] = L(\theta, \omega^\ast) - 1
+\end{eqnarray}</p>
+
+<p>So to construct an optimal detector in a sense of the Baysian risk, the discriminator should jointly maximize the true positive and negative probability. And its maximum is $1 + d _{\rm TV}(P,Q)$. Likewise, standard GAN jointly maximize the log likelihood of true positive and negative probabilty, which yields an optimal value expressed by the J-S divergence. For other GAN, one can also trace the decision region of the optimal discriminator, and may understand if such a GAN bias toward true positive or true negative probability.</p>
+
+<h3 id="dose-gan-bias-toward-true-positive-or-true-negative-during-the-training-process-">Dose GAN bias toward true positive or true negative during the training process ?</h3>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Ping Sheng Kao</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2018-07-11T21:25:48+08:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/machinelearning/'>machinelearning</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://slicerkao.github.io/blog/2018/07/11/study3/" data-via="" data-counturl="http://slicerkao.github.io/blog/2018/07/11/study3/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2018/06/21/study2/" title="Previous Post: Briefing : Derivation of the uniform convergence">&laquo; Briefing : Derivation of the uniform convergence</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+      </div><!-- /div#content -->
+    </div><!-- /div#main -->
+  </div><!-- /div.container -->
+  <footer><div id="footer-widgets-wrapper">
+  <div id="footer-first" class="footer-widget">
+    <h3>About Me</h3>
+    <section class="about-me">
+      
+      <div>
+        <ul>
+          
+            <li>GitHub: <a href="https://github.com/SlicerKao">@SlicerKao</a></li>
+          
+          
+            <li>Blog: <a href="http://slicerkao.github.io">http://slicerkao.github.io</a></li>
+        </ul>
+        <p>
+            Machine to learn a quantum leap ?
+        </p>
+      </div>
+    </section>
+  </div><!-- /div#footer-second -->
+
+
+  <div id="footer-second" class="footer-widget">
+    <h3>Recent Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://slicerkao.github.io";
+        Hatena.BookmarkWidget.title = "Recent Posts";
+        Hatena.BookmarkWidget.sort  = "hot";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-second -->
+
+  <div id="footer-third" class="footer-widget">
+    <h3>Popular Posts</h3>
+    <section id="hatena-popular" class="hatena-bookmark">
+      <script language="javascript" type="text/javascript" src="http://b.hatena.ne.jp/js/widget.js" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+        Hatena.BookmarkWidget.url   = "http://slicerkao.github.io";
+        Hatena.BookmarkWidget.title = "Popular Posts";
+        Hatena.BookmarkWidget.sort  = "count";
+        Hatena.BookmarkWidget.width = 0;
+        Hatena.BookmarkWidget.num   = 10;
+        Hatena.BookmarkWidget.theme = "notheme";
+        Hatena.BookmarkWidget.load();
+      </script>
+    </section>
+  </div><!-- /div#footer-third -->
+</div><!-- /div#footer-widgets-wrapper -->
+
+<div id="credit" role="contentinfo">
+  <p>
+    Copyright &copy; 2018 - <a href="https://github.com/Ping Sheng Kao/">Ping Sheng Kao</a> -
+    <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/haya14busa/mjolvim-octotheme">Mjolvim</a></span>
+  </p>
+</div>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
+
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$']]
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>

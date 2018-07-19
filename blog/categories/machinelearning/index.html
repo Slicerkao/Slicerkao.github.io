@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="ja"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Study Note: Max of subgaussian - Tr{Ceng Lou}</title>
+  <title>Category: machinelearning - Tr{Ceng Lou}</title>
   <meta name="author" content="Ping Sheng Kao">
 
   
-  <meta name="description" content="Given $n$ independently distributed sub-gaussian random variable $Z_i$, each has bounded MGF due to sub gaussian property: \begin{eqnarray}
-&amp;&amp &hellip;">
+  <meta name="description" content="Category: machinelearning">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://slicerkao.github.io/blog/2018/06/19/study-note/">
+  <link rel="canonical" href="http://slicerkao.github.io/blog/categories/machinelearning/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Tr{Ceng Lou}" type="application/atom+xml">
@@ -81,113 +80,63 @@
     <div id="main">
       <div id="content">
         <div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title"><a href="">Study Note: Max of Subgaussian</a></h1>
-    
-    
-      <div class="post-meta">
-        <p class="meta">
-          <span class="timestamp">- 
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2018-06-19T14:46:06+08:00" pubdate data-updated="true"></time> -</span>
-          
-        </p>
-      </div>
+    <h1 class="entry-title"><a href="">Category: Machinelearning</a></h1>
     
   </header>
-
-
-<div class="entry-content"><p>Given $n$ independently distributed sub-gaussian random variable $Z_i$, each has bounded MGF due to sub gaussian property:</p>
-
-<p>\begin{eqnarray}
-&amp;&amp; E[e^{Z_i}] \leq e^{\lambda^2 \sigma^2 /2 } \;\;\; \forall i = 1 \dots n
-\end{eqnarray}</p>
-
-<p>for some $\lambda$ being postive real number. Let $X = \mathop{\max}_{1\leq i \leq n } Z_i$, one has that:</p>
-
-<p>\begin{eqnarray}
-&amp;&amp; E[X] \leq \sigma \sqrt{2 \log n} 
-\end{eqnarray}
-<!--more--></p>
-
-<p>To prove this, note that the aim is to upper bound the expected value $E[X]$; thus Jensen’s inequality comes in handy:</p>
-
-<p>\begin{eqnarray}
-&amp;&amp; e^{t E[X]} \leq E[e^{t X}] = E[\mathop{\max}_{1\leq i \leq n} e^{t Z_i}] \leq \sum _{i=1} ^{n} E[e^{t Z_i}] \leq n e^{t^2 \sigma^2 /2}
-\end{eqnarray}</p>
-
-<p>Thus 
-\begin{eqnarray}
-&amp;&amp; E[X] \leq \frac{\log n}{t} + t \sigma ^2 /2 \leq \sigma \sqrt{2 \log n} 
-\end{eqnarray}</p>
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Ping Sheng Kao</span></span>
-
-      
-
-
-
-
-
+  <div id="blog-archives" class="category">
 
 
 
   
+  <h2>2018</h2>
+
+<article>
+  
+<h1><a href="/blog/2018/07/11/study3/">Understanding Generative Adversarial Net (1)</a></h1>
+<time datetime="2018-07-11T21:25:48+08:00" pubdate><span class='month'>Jul</span> <span class='day'>11</span> <span class='year'>2018</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/machinelearning/'>machinelearning</a></span>
+</footer>
+
+
+</article>
 
 
 
-<time datetime="2018-06-19T14:46:06+08:00" pubdate data-updated="true"></time>
-      
+<article>
+  
+<h1><a href="/blog/2018/06/21/study2/">Briefing : Derivation of the uniform convergence</a></h1>
+<time datetime="2018-06-21T15:57:36+08:00" pubdate><span class='month'>Jun</span> <span class='day'>21</span> <span class='year'>2018</span></time>
 
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/probability/'>probability</a>
-  
-</span>
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/machinelearning/'>machinelearning</a></span>
+</footer>
 
 
-    </p>
-    
-      <div class="sharing">
-  
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://slicerkao.github.io/blog/2018/06/19/study-note/" data-via="" data-counturl="http://slicerkao.github.io/blog/2018/06/19/study-note/" >Tweet</a>
-  
-  
-  
-</div>
+</article>
 
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2018/04/29/study-note-quantum-adiabatic-search-2001/" title="Previous Post: Briefing: Quantum Adiabatic Search (2001)">&laquo; Briefing: Quantum Adiabatic Search (2001)</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2018/06/19/study-note-2/" title="Next Post: Briefing : PAC learnibility">Briefing : PAC learnibility &raquo;</a>
-      
-    </p>
-  </footer>
+
+
+<article>
+  
+<h1><a href="/blog/2018/06/19/study-note-2/">Briefing : PAC learnibility</a></h1>
+<time datetime="2018-06-19T16:47:04+08:00" pubdate><span class='month'>Jun</span> <span class='day'>19</span> <span class='year'>2018</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/machinelearning/'>machinelearning</a></span>
+</footer>
+
+
+</article>
+
+</div><!-- /div#blog-archives.category -->
+
+  
 </article>
 
 

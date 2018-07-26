@@ -9,7 +9,7 @@
   <meta name="author" content="Ping Sheng Kao">
 
   
-  <meta name="description" content="The following notes are summarized from Prof I-Hsiang Wang’s lecture: Mathematic Principles of Machine learning, Lec 3 for ">
+  <meta name="description" content="The following notes are summarized from Prof I-Hsiang Wang’s lecture: Mathematic Principles of Machine learning, Lec 3. An alternated derivation is &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -110,7 +110,153 @@
   </header>
 
 
-<div class="entry-content"><p>The following notes are summarized from Prof I-Hsiang Wang’s lecture: <a href="http://homepage.ntu.edu.tw/~ihwang/Teaching/Sp18/MPML.html"> Mathematic  Principles  of  Machine  learning</a>, Lec 3 for</p>
+<div class="entry-content"><p>The following notes are summarized from Prof I-Hsiang Wang’s lecture: <a href="http://homepage.ntu.edu.tw/~ihwang/Teaching/Sp18/MPML.html"> Mathematic  Principles  of  Machine  learning</a>, Lec 3. An alternated derivation is also given in the <a href="http://nowak.ece.wisc.edu/SLT09/lecture19.pdf">website note</a> and summarized here.</p>
+
+<!--more-->
+
+<h3 id="erm-and-the-uniform-deviation">ERM and the Uniform deviation</h3>
+
+<p>Given empirical dataset $\mathcal{D}$, ERM leads to a solution $f_{\rm ERM} \in {\rm argmin}_{f \in \mathcal{F}} \hat{L} _{\mathcal{D} _n}(f; P)$. It can be shown that the estimation error $\Xi _{\mathcal{F}} (f _{\rm ERM}) = L(f _{ \rm ERM}; P) - \mathop{\inf} _{f \in \mathcal{F}}L(f;P)$ is upper bounded by the uniform deviation:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \Xi _{\mathcal{F}}(f _{\rm ERM} ; P) \leq 2 \mathop{\sup} _{f \in \mathcal{F}} |\hat{L} _{\mathcal{D} _n} (f; P) - L(f ; P)|
+\end{eqnarray}</p>
+
+<p>Let the r.h.s of the inequality (withdraw the constant 2 and the supremum sign) be denoted by $\Gamma _n (f) = \hat{L} _{\mathcal{D} _n} (f; P) - L(f ; P)$. The goal is then to bound the probability $P[\sup _{f \in \mathcal{F}} \vert \Gamma _n (f) \vert  \geq t]$, which is first upper bounded by the upper and the lower deviation:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; P[\sup _{f \in \mathcal{F}} \vert \Gamma _n (f) \vert  \geq t] \leq P[\sup _{f \in \mathcal{F}} \Gamma _n (f)  \geq t] + P[\sup _{f \in \mathcal{F}} [- \Gamma _n (f)] \geq t] 
+\end{eqnarray}</p>
+
+<p>Now that $\sup _{f \in \mathcal{F}}\Gamma _n (f) = \gamma(Z _1, \dots , Z _n) $ is a function of random
+variable for training sample $(Z _1, \dots Z _n)$, and the variation of the
+function by random variable is bounded above by:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; |\gamma(z _1, z _2, \dots , z _i, \dots , z _n) - \gamma(z _1, z _2, \dots , \tilde{z} _i, \dots , z _n)| \leq \frac{C}{n} 
+\end{eqnarray}</p>
+
+<p>for loss value constrained within a interval with length $C$. McDiarmid’s
+inequality $P[ f(Z) - E[f(Z)] \geq t ] \leq {\rm exp} (\frac{-2 t^2}{\sum c^2 _k})$ then applies for $c _k = \frac{C}{n}$. Since we consider loss to be constrained within length-1 interval, this yields the following bound :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp;  P \, [\sup _{f \in \mathcal{F}} \Gamma _n (f) \geq E[\sup _{f \in \mathcal{F}} \Gamma _n] + t] \leq {\rm exp} (-2nt^2)<br />
+\end{eqnarray}</p>
+
+<p>Now we already have a upper bound for the probability of large supremum deviation. What’s left is to upper bound the quantity $E[\sup _{f \in \mathcal{F}} \Gamma _n]$ so that we got:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; P \, [\sup _{f \in \mathcal{F}} \Gamma _n (f) \geq {\rm some \; upper \; bound} + t ] \leq  P \, [\sup _{f \in \mathcal{F}} \Gamma _n (f) \geq E[\sup _{f \in \mathcal{F}} \Gamma _n] + t] \leq {\rm exp} (-2nt^2)<br />
+\end{eqnarray}</p>
+
+<h3 id="rademacher-complexity">Rademacher Complexity</h3>
+
+<p>To upper bound the term $E _{D ^n}[\sup _{f \in \mathcal{F}} \Gamma _n]$, note that :
+\begin{eqnarray}
+&amp;&amp; \mathop{\sup} _{f \in \mathcal{F}} \Gamma _n(f) = \sup _{g \in \ell \circ \mathcal{F}} [\frac{1}{n} \sum _i ^n g(Z _i) - E[g(Z)]]
+\end{eqnarray}</p>
+
+<p>Where $\ell$ is the loss function, and $Z$ is adopted in the previous section as $Z = (X,Y)$. Vapnik et.al introduce some ghost sample $ \tilde{D} = (\tilde{Z} _1 \dots \tilde{Z} _n) \sim P^{\otimes n}$ so that $E _{\tilde{D} _n} [\frac{1}{n} \sum _{1}^{n} g(\tilde{Z} _i)] = E(g(Z))$. Introducing this we get:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; E _{D^n}[\mathop{\sup} _{f \in \mathcal{F}} \Gamma _n(f)] = E _{D^n} [\sup _{g \in \ell \circ \mathcal{F}} [\frac{1}{n} \sum _i ^n g(Z _i) - E[g(Z)]]
+] \newline
+&amp;&amp; = E _{D^n} [\sup _{g \in \ell \circ \mathcal{F}} E _{\tilde{D}^n}
+[\frac{1}{n} \sum _i ^n g(Z _i) - g(\tilde{Z} _i)]] \newline
+&amp;&amp; \leq E _{D^n} \; E _{\tilde{D}^n} [\sup _{g \in \ell \circ \mathcal{F}}
+\frac{1}{n} \sum _i ^n g(Z _i) - g(\tilde{Z} _i)] \newline
+\end{eqnarray}
+To this end, one can further upper bound it by $E _{D _n} [\mathop{\sup} _{g \in \ell \circ \mathcal{F}} \frac{1}{n} \sum _{i=1}^{n} g(Z _i)] + E _{\tilde{D} _n} [\mathop{\sup} _{g \in \ell \circ \mathcal{F}} \frac{1}{n} \sum _{i=1}^{n} -g(\tilde{Z} _i)] $, but this leads the analysis to nowhere since the supremum of a same term with different sign has different result with respect to the expectation. To resolve it, introduce a symmetrization random variable (like adding extra term for the summation (integral) expansion expression of the original expectation value) to equalize the value of the two terms. More explicitly, the random variable $g(Z _i) - g(\tilde{Z} _i)$ has a symmetric distribution, thus introducing i.i.d random variables $\sigma _i \sim {\rm Ber} (\frac{1}{2})$ to the expectation won’t change its value. Thus,</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; E _{D^n} \; E _{\tilde{D}^n} [\sup _{g \in \ell \circ \mathcal{F}}
+\frac{1}{n} \sum _i ^n g(Z _i) - g(\tilde{Z} _i)] \newline
+&amp;&amp; = E _{D^n} \; E _{\tilde{D}^n} \; E _{\sigma _1 , \sigma _2 , \dots , \sigma _n } [\sup _{g \in \ell \circ \mathcal{F}}
+\frac{1}{n} \sigma _i [\sum _i ^n g(Z _i) - g(\tilde{Z} _i)]] \newline
+&amp;&amp; \leq E _{D _n} E _{\sigma _1 \dots \sigma _n} [\mathop{\sup} _{g \in \ell \circ \mathcal{F}} \frac{1}{n} \sum _{i=1}^{n} \sigma _i g(Z _i)] +  E _{\tilde{D} _n} E _{\sigma _1 \dots \sigma _n} [\mathop{\sup} _{g \in \ell \circ \mathcal{F}} \frac{1}{n} \sum _{i=1}^{n} - \sigma _i g(\tilde{Z} _i)] \newline
+&amp;&amp; = 2 E _{D _n} E _{\sigma _1 \dots \sigma _n} [\mathop{\sup} _{g \in \ell \circ \mathcal{F}} \frac{1}{n} \sum _{i=1}^{n} \sigma _i g(Z _i)] 
+\end{eqnarray}</p>
+
+<p>The quantity on the right hand size is called the Rademacher complexity
+$\mathcal{R} _n (\mathcal{G}) $ , which is $E _{D _n} E _{\sigma _1 \dots \sigma _n} [\mathop{\sup} _{g \in \mathcal{G}} \frac{1}{n} \sum _{i=1}^{n} \sigma _i g(Z _i)] $</p>
+
+<p>Before proceeding toward the property of the Rademacher complexity, we can
+relate the complexity measure back to the estimation error via :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; P[\Xi _{\mathcal{F}}(f _{\rm ERM} ; P) \geq 4 \mathcal{R} _n(\mathcal{G}) + \epsilon] \leq P[\mathop{\sup} _{f \in \mathcal{F}}|\Gamma _n(f)| &gt; 2 \mathcal{R} _n(\mathcal{G}) + \frac{\epsilon}{2}] \leq 2 {\rm exp} \big( - \frac{n \epsilon^2}{2} \big) 
+\end{eqnarray}</p>
+
+<p>Also, with Mcdiamard inequality, one can upper bound the Rademahcer complexity by the empirical Rademacher inequality $\hat{\mathcal{R}} _n (d _n , \mathcal{G}) = E _{\bf \vec{\sigma}} [ \mathop{\sup} _{g \in \mathcal{G}} \frac{1}{n} \sum _{i=1}^{n} \sigma _i g(z _i)]$ with probability larger than $1-\delta$ :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \mathcal{R} _n( \mathcal{G}) \leq 2 \hat{\mathcal{R}} _n (d _n , \mathcal{G}) + 3 \sqrt{\frac{2}{n} \log \big(\frac{3}{\delta}\big)}<br />
+\end{eqnarray}</p>
+
+<h3 id="binary-classification-0-1-loss-and-the-vc-dimension">Binary Classification, 0-1 loss and the VC dimension</h3>
+
+<p>The empirical Rademacher complexity can be further related to the functional
+class $\mathcal{F}$ in the binary classification setting, with $0-1$ loss:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \hat{\mathcal{R}} _n (d _n; \mathcal{G}) = E _{\bf \vec{\sigma}} [ \mathop{\sup} _{g \in \mathcal{G}} \frac{1}{n} \sum _{i=1}^{n} \sigma _i g(z _i)] \newline
+&amp;&amp; = E _{\bf \vec{\sigma}} [ \mathop{\sup} _{f \in \mathcal{F}} \frac{1}{n} \sum _{i=1}^{n} \sigma _i \ell (f(x _i, y _i))] \newline
+&amp;&amp; = E _{\bf \vec{\sigma}} [ \mathop{\sup} _{f \in \mathcal{F}} \frac{1}{n} \sum _{i=1}^{n} \sigma _i \frac{1 - y _i f(x _i)}{2}] \newline
+&amp;&amp; = \frac{1}{2}E _{\bf \vec{\sigma}} [ \mathop{\sup} _{f \in \mathcal{F}} \frac{1}{n} \sum _{i=1}^{n} \sigma _i f(x _i)] = \frac{1}{2} \hat{R} _n(x _1, \dots x _n; \mathcal{F})
+\end{eqnarray}</p>
+
+<p>The above expression has a good convenience: We can simplify the supremum term into maximum of a finite functional class, since the original functional class can be partitioned into groups $\mathcal{A}$ that evaluate the same on the empirical data set $(x _1 \dots x _n)$. Hence,</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \hat{R} _n(x _1, \dots x _n; \mathcal{F}) = E _{\bf \sigma} \big[ \mathop{max} _{u \in \mathcal{A}} \frac{1}{n} \sum _{i = 1}^{n} \sigma _i u _i \big]
+\end{eqnarray}</p>
+
+<p>The size of the set $\mathcal{A}$ is upper bounded by the growth function $\tau_{\mathcal{F}}(n)$, which is defined as:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \tau _{\mathcal{F}} (n) = \mathop{max} _{(x _1 \dots x _n)} \tau _{\mathcal{F}} (x _1 \dots x _n)= \mathop{max} _{(x _1 \dots x _n)} \big\vert [(f(x _1) \dots f(x _n)) | f \in \mathcal{F}] \big\vert
+\end{eqnarray}</p>
+
+<p>With this one can adopt the Massart’s finite Lemma : If $\mathcal{A}$ is a
+finite set, then :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; E _{\bf \sigma} \big[ \mathop{max} _{u \in \mathcal{A}} \frac{1}{n} \sum _{i=1}^{n} \sigma _i u _i  \big] \leq \frac{\rm max _{u \in \mathcal{A}} \Vert u \Vert}{n} \sqrt{2 \log |\mathcal{A}|}
+\end{eqnarray}</p>
+
+<p>(which is proven by maximum of subgaussian). Direct application of this lemma leads to :
+\begin{eqnarray}
+&amp;&amp; \hat{\mathcal{R}} _n (\bf x = (x _1 \dots x _n) ; \mathcal{F}) \leq \sqrt{\frac{2 \log \tau _{\mathcal{F}}(\bf x)}{n}}, \; \; \; \mathcal{R} _n(\mathcal{F}) \leq \sqrt{\frac{2 \log \tau _{\mathcal{F}} (n)}{n}}
+\end{eqnarray}</p>
+
+<p>Now we can introduce the VC dimension, which is defined as:
+\begin{eqnarray}
+&amp;&amp; VC(\mathcal{F}) = {\rm max}[n : \tau _{\mathcal{F}} (n) = 2^n]
+\end{eqnarray}</p>
+
+<p>Rethink about the meaning of the growth function $\tau _{\mathcal{F}} (n)$ in the case $n$ greater or less than the VC dimension $d$ of the functional class, we could arrive at the Sauer’s lemma:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \tau _{F} (n) \leq \sum _{i =0}^{ \mathop{min} (n, d)} {n \choose i} \longrightarrow ({\rm which \; is \; further \; upper \; bounded \; by \;}  (n + 1) ^d)
+\end{eqnarray}</p>
+
+<p>Hence, for 0-1 loss binary classification task, we have with probability at
+least $1- \delta$:
+\begin{eqnarray}
+&amp;&amp; \Xi _{\mathcal{F}}(f _{ERM} ; P) \leq 2 \sqrt{\frac{2 VC(\mathcal{F}) \log(n+1)}{n}} + \sqrt{\frac{2}{n} \log (\frac{2}{\delta})}
+\end{eqnarray}</p>
+
+<h3 id="relaxation-to-non-0-1-loss-and-non-binary-case">Relaxation to non 0-1 loss and non binary case</h3>
+<p>From the above analysis, it’s assumed that the label cardinality $\vert
+\mathcal{Y} \vert$ is finite so that $\vert \mathcal{A} \vert \leq \vert \mathcal{Y} \vert ^n$ is finite and the Massart finite lemma apply. Also, it’s assumed that the loss function is hard $0-1$, and thus the functional class can be perfectly grouped. It may not be the case when the loss function is real valued.</p>
+
+<p>Having Massart’s lemma in mind, we still want to discretize the functional
+class. What can be done is to introduce the covering number. Define a pseudo
+distance $\rho _{z _1 \dots z _n} (f,g) = \sqrt{\frac{1}{n} \sum _{i=1}^n |f(z _i) - g(z _i)|^2}$, it satisfies triangle inequality and symmetry property. But it’s not a metric since indistinguishability is not guaranteed : $\rho( f, g) = 0$ does not imply $ f = g$. An $\epsilon -cover$ of a functional class $\mathcal{G} \subset \mathcal{U}$ (($\mathcal{U}$, $\rho$) is a pseudometric space) is defined as a subset $\mathcal{C} \subset \mathcal{U}$ such that for all $g \in \mathcal{G}$, there exist $h \in \mathcal{C}$ that $\rho (g, h) \leq \epsilon$. The covering number is then defined as:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; N(\epsilon, \mathcal{G}, \rho) = {\rm min}[|mathcal{C}|: \mathcal{C} \; is \; an \; \epsilon -cover \; of \; \mathcal{G}]
+\end{eqnarray}</p>
 
 </div>
 

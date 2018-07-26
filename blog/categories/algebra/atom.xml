@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: quantum, | Tr{Ceng Lou}]]></title>
-  <link href="http://slicerkao.github.io/blog/categories/quantum/atom.xml" rel="self"/>
+  <title><![CDATA[Category: algebra | Tr{Ceng Lou}]]></title>
+  <link href="http://slicerkao.github.io/blog/categories/algebra/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
   <updated>2018-07-26T11:42:26+08:00</updated>
   <id>http://slicerkao.github.io/</id>
@@ -14,10 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Study Note: Recommendation system in both classical and quantum way]]></title>
-    <link href="http://slicerkao.github.io/blog/2018/07/22/study5/"/>
-    <updated>2018-07-22T10:42:04+08:00</updated>
-    <id>http://slicerkao.github.io/blog/2018/07/22/study5</id>
+    <title type="html"><![CDATA[Study Note: Product distribution increase divergence]]></title>
+    <link href="http://slicerkao.github.io/blog/2018/07/22/study4/"/>
+    <updated>2018-07-22T10:41:58+08:00</updated>
+    <id>http://slicerkao.github.io/blog/2018/07/22/study4</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>

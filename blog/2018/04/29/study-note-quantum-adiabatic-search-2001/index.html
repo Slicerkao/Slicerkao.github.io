@@ -241,6 +241,47 @@ by taking $s = 1$ and $N \gg 1$. This achieve the Grover’s search performance 
 &amp;&amp; i \frac{d}{dt}|\psi_m ; t\rangle = (I - (1-s)|\psi_0\rangle\langle\psi_0| - s|m\rangle\langle m|)|\psi_m;t\rangle \newline
 &amp;&amp; i \frac{d}{dt}|\psi_m’ ; t\rangle = (I - (1-s)|\psi_0\rangle\langle\psi_0| - s|m’\rangle\langle m’|)|\psi_{m’};t\rangle 
 \end{eqnarray}</p>
+
+<p>with $\vert \psi_m ; 0 \rangle = \vert \psi_{m} ; 0 \rangle = \vert \psi_0 \rangle$ for some initial configuration. Now take the derivative of the objective with respect to the evolution time :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \frac{d}{dt}[1 -  |\langle \psi_m ; t| \psi_{m’} ; t \rangle |^2 ] \newline
+&amp;&amp; = - \frac{d}{dt}  2 \langle \psi_m ; t| \psi_{m’} ; t \rangle  \langle \psi_{m’} ; t| \psi_{m} ; t \rangle  \newline
+&amp;&amp;  = {\rm Im} [\langle \psi_{m} ; t| (-s| m\rangle \langle m| + s |m’ \rangle\langle m’|) | \psi_{m’} ; t\rangle \langle \psi_{m’} ; t| \psi_{m} ; t \rangle]  \newline
+&amp;&amp; \leq 2 |\langle \psi_{m} ; t| (-s| m\rangle \langle m| + s |m’ \rangle\langle m’|) | \psi_{m’} ; t\rangle| \; | \langle \psi_{m’} ; t| \psi_{m} ; t \rangle|  \newline
+&amp;&amp; \leq  2[ |\langle \psi_{m} ; t| (-s| m\rangle \langle m|) | \psi_{m’} ; t\rangle | + |\langle \psi_{m} ; t| (-s| m’\rangle \langle m’|) | \psi_{m’} ; t\rangle |]<br />
+\end{eqnarray}</p>
+
+<p>Let $H_{m} = -s \vert m \rangle \langle m \vert $, summing the above objective for all $m$ and $m’$, we got:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \frac{d}{dt} \sum_{m, m’ = 1}^{N} [1 -  |\langle \psi_m ; t| \psi_{m’} ; t \rangle |^2 ] \newline
+&amp;&amp; \leq 4 \sum_{m, m’ = 1}^{N} |\langle \psi_m ; t| H_{m} | \psi_{m’} ; t \rangle |  \newline
+&amp;&amp; \leq 4 \sum_{m, m’ = 1}^{N} \Vert H_{m}| \psi_{m} ; t \rangle \Vert \Vert \psi_{m’} \Vert \newline
+&amp;&amp; = 4 N \sum_{m=1}^{N} \Vert H_{m}| \psi_{m} ; t \rangle \Vert<br />
+\end{eqnarray}</p>
+
+<p>To upper bound the last term, notice that $\sum_{m=1}^{N} \Vert H_m \vert \psi_m ; t\rangle\Vert^2 = s^2$ due to normalization condition. Thus by Cauchy inequality,</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \frac{d}{dt} \sum_{m, m’ = 1}^{N} [1 -  |\langle \psi_m ; t| \psi_{m’} ; t \rangle |^2 ] \newline
+&amp;&amp; \leq 4 N \sum_{m=1}^{N} \Vert H_{m}| \psi_{m} ; t \rangle \Vert \leq 4 N \sqrt{N} s   <br />
+\end{eqnarray}</p>
+
+<p>Notice that the above derivative is taken to leverage the Schrodinger’s
+equation. Finally, we discard the derivative and integrate the both side of the inequality:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \sum_{m, m’ = 1}^{N} [1 -  |\langle \psi_m ; t| \psi_{m’} ; t \rangle |^2 ] \leq 4N \sqrt{N} \int_{0}^{T} s(t) dt \leq 4N \sqrt{N} T
+\end{eqnarray}</p>
+
+<p>With $\sum_{m, m’ = 1}^{N} [1 -  \vert \langle \psi_m ; t \vert \psi_{m’} ; t \rangle \vert ^2 ] \geq N^2\delta$, we’ve proven that $T \geq O(\frac{\sqrt{N}}{\delta})$.</p>
+
+<h3 id="comment">Comment</h3>
+
+<p>The original work consider the Hamiltonian with a certain form. Perhaps it’s possible to derive search algorithm by other interploations of Hamiltonian. Perhaps a class of Hamiltonian would guarantee speedup.</p>
+
+<p>Also, if take the adiabatic results to the reverse direction, what makes quantum evolution an adiabatic one ? Can similar result be applied to other update dynamic, like recent gradient descent in machine learning ?</p>
 </div>
 
 

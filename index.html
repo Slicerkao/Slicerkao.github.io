@@ -229,7 +229,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2018/07/22/study4/">Study Note: Product Distribution(quantum State) Increase Divergence ?</a></h1>
+      <h1 class="entry-title"><a href="/blog/2018/07/22/study4/">Study Note: Product Distribution(quantum State) Increase and Split the Divergence ?</a></h1>
     
     
       <div class="post-meta">
@@ -261,7 +261,35 @@
 &amp;&amp; d _{p}(P,Q) = \mathop{\sup} _{S} [P(S) - Q(S)]
 \end{eqnarray}</p>
 
-<p><img src="/images/ud.png" alt="alt text" />
+<p>This measure is closely related to the optimal successful detection probability $P _{\rm opt}$ in the binary hypothesis testing :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; P _{\rm opt} = \mathop{\sup} _{S} [\pi _1 P(S) + \pi _2 (1 - Q(S))] = \pi _2 + d _{p}(\pi _1 P, \pi _2 Q) = \frac{1}{2} + d _{\rm TV}(\pi _1 P, \pi _2 Q)<br />
+\end{eqnarray}</p>
+
+<p>where $\pi _1, \pi _2$ are the prior distribution of the hypothesis, and $d _{\rm TV}(P, Q)$ is the total variance distance :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; d _{TV}(P,Q) = \frac{1}{2} \sum _{\omega \in \Omega} |P(\omega) - Q(\omega)|
+\end{eqnarray}</p>
+
+<p>What makes the work by Zinan et.al interesting is that if certain local property is satisfied for the distribution pair $(P, Q _1)$ but not for $(P, Q _2)$, and assume $d _p(P, Q _1) = d _p(P, Q _2)$, then the possible value region of $d _p(P^m, Q^m _1)$ splits away from that of $d _p(P^m, Q^m _2)$. This local property is called $(\epsilon, \delta)$ -mode collapse, defined as:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; P,Q \; {\rm has \; (\epsilon, \delta)- mode \; collapse \; :}\exists S \; {\rm s.t.} \; P(S) \geq \delta \; , Q(S) \leq \epsilon 
+\end{eqnarray}</p>
+
+<p><img src="/images/ud.png" alt="alt text" /></p>
+
+<p>Interestingly, similar result was given in the quantum literature by <a href="https://arxiv.org/pdf/1503.03048.pdf">Jonas
+Maziero</a> for trace distance:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \Vert \rho _1 - \rho _2 \Vert _1 = {\rm Tr} (\sqrt{(\rho _1 - \rho _2)^{\ast} ( \rho _1 - \rho _2)})
+\end{eqnarray}</p>
+
+<p>So, I think it would be fun to dig into the quantum counterpart of Zinan’s work.</p>
+
 </div>
   
   
@@ -273,7 +301,7 @@
 
       <footer>
       
-      - <a href="/blog/2018/07/22/study4/">Study Note: Product distribution(quantum state) increase divergence ?</a>
+      - <a href="/blog/2018/07/22/study4/">Study Note: Product distribution(quantum state) increase and split the divergence ?</a>
       <time datetime="2018-07-22T10:41:58+08:00" pubdate><span class='month'>Jul</span> <span class='day'>22</span> <span class='year'>2018</span></time>
       
       <span class="categories">posted in <a class='category' href='/blog/categories/linearalgebra/'>linearalgebra</a>, <a class='category' href='/blog/categories/probability/'>probability,</a></span>

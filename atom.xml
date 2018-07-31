@@ -4,7 +4,7 @@
   <title><![CDATA[Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-07-26T11:58:27+08:00</updated>
+  <updated>2018-07-31T12:34:21+08:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -41,11 +41,81 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Study Note: Product distribution increase divergence]]></title>
+    <title type="html"><![CDATA[Study Note: Product distribution(quantum state) increase divergence ?]]></title>
     <link href="http://slicerkao.github.io/blog/2018/07/22/study4/"/>
     <updated>2018-07-22T10:41:58+08:00</updated>
     <id>http://slicerkao.github.io/blog/2018/07/22/study4</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>Given a divergence measure $d(P, Q)$ and two distribution $P$ $Q$, what is the effect to the divergence $d(P^m, Q^m)$ as $m$ increases ? Intuitively, the divergence shall increase since product distribution emphasize the difference of the distribution. In <a href="https://arxiv.org/abs/1712.04086">this work by Zinan et.al </a>, the upper and lower bound of $d(P^m, Q^m)$ is given for the divergence measure :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; d _{p}(P,Q) = \mathop{\sup} _{S} [P(S) - Q(S)]
+\end{eqnarray}</p>
+
+<p><img src="http://slicerkao.github.io/images/ud.png" alt="alt text" />
+<!--more--></p>
+
+<p>This measure is closely related to the optimal successful detection probability $P _{\rm opt}$ in the binary hypothesis testing :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; P _{\rm opt} = \mathop{\sup} _{S} [\pi _1 P(S) + \pi _2 (1 - Q(S))] = \pi _2 + d _{p}(\pi _1 P, \pi _2 Q) = \frac{1}{2} + d _{\rm TV}(\pi _1 P, \pi _2 Q)<br />
+\end{eqnarray}</p>
+
+<p>where $\pi _1, \pi _2$ are the prior distribution of the hypothesis, and $d _{\rm TV}(P, Q)$ is the total variance distance :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; d _{TV}(P,Q) = \frac{1}{2} \sum _{\omega \in \Omega} |P(\omega) - Q(\omega)|
+\end{eqnarray}</p>
+
+<p>What makes the work by Zinan et.al interesting is that if certain local property is satisfied for the distribution pair $(P, Q _1)$ but not for $(P, Q _2)$, and assume $d _p(P, Q _1) = d _p(P, Q _2)$, then the possible value region of $d _p(P^m, Q^m _1)$ splits away from that of $d _p(P^m, Q^m _2)$. This local property is called $(\epsilon, \delta)$ -mode collapse, defined as:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; P,Q \; {\rm has \; (\epsilon, \delta)- mode \; collapse \; :}\exists S \; {\rm s.t.} \; P(S) \geq \delta \; , Q(S) \leq \epsilon 
+\end{eqnarray}</p>
+
+<p>Before heading toward the explicit proof, it’s worthwhile to reformulate the
+above statements and definitions in a quantum sense.</p>
+
+<h3 id="a-quantum-counterpart">A Quantum Counterpart</h3>
+
+<p>In the quantum paradigm, the discrete probability distribution is replaced by the density matrix $\rho$, which is a positive semidefinite matrix with trace one. When the matrix is diagonal, it’s reduced back to the classical probability distribution.</p>
+
+<p>For a classical distribution, calculating $P(S)$ for some region $S$ is
+intuitive and straightforward: It’s the probability of observing events falling within the region $S$. More explicitly, :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; P(S) = \sum _{\omega \in S} P(\omega) \cdot 1 + \sum _{\omega \notin S}
+P(\omega) \cdot 0 = \langle P, \mathbb{1} _{S} \rangle 
+\end{eqnarray}</p>
+
+<p>where $\mathbb{1} _S$ is a vector having one on the support $S$ and zero for the other components. This idea is generalized in the quantum domain by quantum measurement. To be more explicit, quantum measurement $\mu$ is a collection of positive semidefinite matrix, such that:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \sum _{a \in {\rm some “event” support}} \mu (a) = 1
+\end{eqnarray}</p>
+
+<p>When measurement is performed on a quantum state $\rho$, event $a$ is selected with probability $\langle \mu (a), \rho \rangle = Tr(\mu (a) ^{\ast} \rho)$. Take the task of binary hypthesis testing as an example, the collection of measurement operator $[\mu (0) , \mu (1)]$ indicates the observation comes from $\rho _{P}$ or $\rho _{Q}$. The successful detection probability is:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; P _{\rm opt}=\pi _1 \langle \mu (0), \rho _{P}\rangle + \pi _2 \langle \mu (1), \rho _{Q}\rangle
+\end{eqnarray}</p>
+
+<p>which is further associated with the trace distance (reduce to d _{TV} for
+classical case) by the well known Holevo-Helstrom theorem:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; P _{\rm opt}= \pi _1 \langle \mu (0), \rho _{P}\rangle + \pi _2 \langle \mu (1), \rho _{Q}\rangle \leq \frac{1}{2} + \frac{1}{2}\Vert \pi _1 \rho _{P} - \pi _2 \rho _{Q} \Vert _1
+\end{eqnarray}</p>
+
+<p>where the equality is established by constructing projective measurement from the Jordan-Hahn decomposition:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \pi _1 \rho _{P} - \pi _2 \rho _{Q} = M - N \; , \; \mu^{\ast} (0) = \Pi _{\rm im \; M} \; , \; \mu^{\ast} (1) = \mathbb{1} - \Pi _{\rm im \; M}
+\end{eqnarray}</p>
+
+<p>where $(M,N)$ are both positive semidefinite, and $\Pi _{\rm im \; M} $ is the projection operator onto the image of $M$.  This corresponds to the optimal $S$ given by $d _{p}(\pi _1 P, \pi _2 Q)$ in the case $\rho _{P} \; \rho _{Q}$ are both diagonal.</p>
+
+<p>($\epsilon, \delta$)- mode collapse can be rephrased in a quantum manner. State pair $(\rho _{P}, \rho _{Q})$ has ($\epsilon, \delta$) -mode collapse if there exist a measurement operator $\mu(a)$ with $a \in \mathcal{A}$ for some collection, such that $\langle \mu (a), \rho _{P}\rangle \geq \delta$ and $\langle \mu (a), \rho _{Q} \rangle \leq \epsilon$.</p>
+
 ]]></content>
   </entry>
   

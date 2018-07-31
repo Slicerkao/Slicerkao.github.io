@@ -4,7 +4,7 @@
   <title><![CDATA[Category: probability, | Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/blog/categories/probability/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-07-31T12:34:21+08:00</updated>
+  <updated>2018-07-31T17:40:56+08:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -72,7 +72,7 @@ P(\omega) \cdot 0 = \langle P, \mathbb{1} _{S} \rangle
 &amp;&amp; P _{\rm opt}=\pi _1 \langle \mu (0), \rho _{P}\rangle + \pi _2 \langle \mu (1), \rho _{Q}\rangle
 \end{eqnarray}</p>
 
-<p>which is further associated with the trace distance (reduce to d _{TV} for
+<p>which is further associated with the trace distance (reduce to $d _{TV}$ for
 classical case) by the well known Holevo-Helstrom theorem:</p>
 
 <p>\begin{eqnarray}
@@ -88,6 +88,21 @@ classical case) by the well known Holevo-Helstrom theorem:</p>
 <p>where $(M,N)$ are both positive semidefinite, and $\Pi _{\rm im \; M} $ is the projection operator onto the image of $M$.  This corresponds to the optimal $S$ given by $d _{p}(\pi _1 P, \pi _2 Q)$ in the case $\rho _{P} \; \rho _{Q}$ are both diagonal.</p>
 
 <p>($\epsilon, \delta$)- mode collapse can be rephrased in a quantum manner. State pair $(\rho _{P}, \rho _{Q})$ has ($\epsilon, \delta$) -mode collapse if there exist a measurement operator $\mu(a)$ with $a \in \mathcal{A}$ for some collection, such that $\langle \mu (a), \rho _{P}\rangle \geq \delta$ and $\langle \mu (a), \rho _{Q} \rangle \leq \epsilon$.</p>
+
+<p>In the next section, we starts by calculating the total variance (trace distance) on some simple toy cases to gain some intuition.</p>
+
+<h3 id="examples-classical-and-quantum-toy-case">Examples: Classical and quantum toy case</h3>
+
+<p>Consider discrete random variables $P = [ \frac{1}{3}, \frac{1}{3}, \frac{1}{3} ] \; , \; Q _1 = [ 0, \frac{1}{2}, \frac{1}{2} ] \; , \; Q _2 = [ \frac{1}{6}, \frac{2}{3}, \frac{1}{6} ]$. The total variance $d _{\rm TV}(P, Q _1) = d _{\rm TV}(P, Q _2) = \frac{1}{3}$. However, $(P, Q _1)$ exhibits $(0, \frac{1}{3})$-mode collapse while $(P, Q _2)$ doesn’t.</p>
+
+<p>Now let’s calculate the distance for the product distribution. Carefully think about positions where the probability mass differs, we get:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; d _{\rm TV}(P^m, Q _1^m) = \frac{1}{2} \cdot (2^m ((\frac{1}{2})^m - (\frac{1}{3}) ^m ) + (3^m - 2^m)(\frac{1}{3})^m ) = 1 - (\frac{2}{3})^m \newline
+&amp;&amp; d _{\rm TV}(P^m, Q _2^m) =\frac{1}{2} \cdot \sum _{i =0} ^m { m \choose i}\;2^{m -i}\; |(\frac{2}{3})^i (\frac{1}{6})^{m - i} - (\frac{1}{3})^m| 
+\end{eqnarray}</p>
+
+<p><img src="/images/rrr.png" alt="alt text" /></p>
 
 ]]></content>
   </entry>

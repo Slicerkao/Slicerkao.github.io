@@ -4,7 +4,7 @@
   <title><![CDATA[Category: probability, | Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/blog/categories/probability/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-07-31T23:34:35+08:00</updated>
+  <updated>2018-08-01T09:01:02+08:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -73,7 +73,7 @@ P(\omega) \cdot 0 = \langle P, \mathbb{1} _{S} \rangle
 <p>where $\mathbb{1} _S$ is a vector having one on the support $S$ and zero for the other components. This idea is generalized in the quantum domain by quantum measurement. To be more explicit, quantum measurement $\mu$ is a collection of positive semidefinite matrix, such that:</p>
 
 <p>\begin{eqnarray}
-&amp;&amp; \sum _{a \in {\rm some “event” support}} \mu (a) = 1
+&amp;&amp; \sum _{a \in {\rm some “event” support}} \mu (a) = \mathbb{1}
 \end{eqnarray}</p>
 
 <p>When measurement is performed on a quantum state $\rho$, event $a$ is selected with probability $\langle \mu (a), \rho \rangle = Tr(\mu (a) ^{\ast} \rho)$. Take the task of binary hypthesis testing as an example, the collection of measurement operator $[\mu (0) , \mu (1)]$ indicates the observation comes from $\rho _{P}$ or $\rho _{Q}$. The successful detection probability is:</p>
@@ -114,7 +114,7 @@ classical case), by the well known Holevo-Helstrom theorem:</p>
 
 <p><img src="/images/rrr.png" alt="alt text" /></p>
 
-<p>Note that, for classical distribution on the binary support $(P,Q)$ and P, given $d _{\rm TV} (P,Q)$ uniquely determines $Q$. But this is not the case for $(\rho _P, \rho _Q)$ given the trace distance. For instance, consider :</p>
+<p>Note that, for classical distribution pair on the binary support $(P,Q)$ and P, given $d _{\rm TV} (P,Q)$ uniquely determines $Q$. But this is not the case for $(\rho _P, \rho _Q)$ given the trace distance. For instance, consider :</p>
 
 <p>\begin{eqnarray}
 &amp;&amp; \rho _{P} = 
@@ -122,7 +122,19 @@ classical case), by the well known Holevo-Helstrom theorem:</p>
 \frac{1}{2} &amp; 0 \newline
 0 &amp; \frac{1}{2}
 \end{pmatrix} \newline
+&amp;&amp; \rho _{Q _1} = 
+\begin{pmatrix}
+\frac{1}{2} &amp; \frac{1}{2} \newline
+\frac{1}{2} &amp; \frac{1}{2}
+\end{pmatrix} \newline
+&amp;&amp; \rho _{Q _2} = 
+\begin{pmatrix}
+1 &amp; 0 \newline
+0 &amp; 0
+\end{pmatrix}
 \end{eqnarray}</p>
+
+<p>The trace distance $\Vert \rho _{P} - \rho _{Q _1} \Vert _1 = \Vert \rho _{P} - \rho _{Q _2} \Vert _1 = 1 $. However, $\rho _{Q _1}$ is a pure state, while $\rho _{Q _2}$ is a classical probablistic state. Also, given  $\mu (0) = \vert 0 \rangle \langle 0 \vert \; , \; \mu (1) = \vert 1 \rangle \langle 1 \vert$ , $(\rho _{P}, \rho _{Q _2})$ exhibits $(0, 1/2)$-mode collapse while $(\rho _{P}, \rho _{Q _1})$ doesn’t.</p>
 ]]></content>
   </entry>
   

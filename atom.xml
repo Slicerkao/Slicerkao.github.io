@@ -4,7 +4,7 @@
   <title><![CDATA[Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-08-01T09:01:02+08:00</updated>
+  <updated>2018-08-02T21:16:51+08:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -75,7 +75,7 @@
 Maziero</a> for trace distance:</p>
 
 <p>\begin{eqnarray}
-&amp;&amp; \Vert \rho _1 - \rho _2 \Vert _1 = {\rm Tr} (\sqrt{(\rho _1 - \rho _2)^{\ast} ( \rho _1 - \rho _2)})
+&amp;&amp; d _1 (\rho _1, \rho _2) = \frac{1}{2} \Vert \rho _1 - \rho _2 \Vert _1 = {\rm Tr} (\sqrt{(\rho _1 - \rho _2)^{\ast} ( \rho _1 - \rho _2)})
 \end{eqnarray}</p>
 
 <p>So, I think it would be fun to dig into the quantum counterpart of Zinan’s work.</p>
@@ -161,7 +161,21 @@ classical case), by the well known Holevo-Helstrom theorem:</p>
 \end{pmatrix}
 \end{eqnarray}</p>
 
-<p>The trace distance $\Vert \rho _{P} - \rho _{Q _1} \Vert _1 = \Vert \rho _{P} - \rho _{Q _2} \Vert _1 = 1 $. However, $\rho _{Q _1}$ is a pure state, while $\rho _{Q _2}$ is a classical probablistic state. Also, given  $\mu (0) = \vert 0 \rangle \langle 0 \vert \; , \; \mu (1) = \vert 1 \rangle \langle 1 \vert$ , $(\rho _{P}, \rho _{Q _2})$ exhibits $(0, 1/2)$-mode collapse while $(\rho _{P}, \rho _{Q _1})$ doesn’t.</p>
+<p>The trace distance $0.5 \cdot \Vert \rho _{P} - \rho _{Q _1} \Vert _1 = 0.5 \cdot \Vert \rho _{P} - \rho _{Q _2} \Vert _1 = 0.5 $. However, $\rho _{Q _1}$ is a pure state, while $\rho _{Q _2}$ is a classical probablistic state. Also, given  $\mu (0) = \vert 0 \rangle \langle 0 \vert \; , \; \mu (1) = \vert 1 \rangle \langle 1 \vert$ , $(\rho _{P}, \rho _{Q _2})$ exhibits $(0, 1/2)$-mode collapse while $(\rho _{P}, \rho _{Q _1})$ doesn’t. However, trace distance $\Vert  \rho _{P}^m, \rho _{Q _1} ^m \Vert _1$ and $\Vert \rho _{P}^m, \rho _{Q _2} ^m\Vert _1$does not split as $m$ increases. In fact, careful calculation leads to :
+\begin{eqnarray}
+&amp;&amp; d _1(\rho _P ^m, \rho _{Q _1} ^m) = d _2(\rho _P ^m, \rho _{Q _2} ^m ) = (1 - \frac{1}{2 ^m})
+\end{eqnarray}</p>
+
+<p><img src="http://slicerkao.github.io/images/re-1.png" alt="alt text" /></p>
+
+<p>But this aligment in the growth of trace distance is not universal among all the two dimensional quantum states. The figure below shows the possible region of $d _1(\rho ^n, \rho _x ^n)$ among all possible $\rho _x$ such that $d _1(\rho, \rho _x ) = 0.25$, and $\rho$ is randomly selected on a $0.5-$ radius Bloch sphere.</p>
+
+<p><img src="http://slicerkao.github.io/images/re.png" alt="alt text" /></p>
+
+<p>From the above experiments, we’ve seen that non-classical effect emerges even on a two-dimensional case. Thus, we should first analyze the two dimensional quantum state to understand when the split happens, and how it’s associated with the mode collpase definition.</p>
+
+<h3 id="two-dimensional-quantum-state--bloch-representation">Two dimensional quantum state : Bloch representation</h3>
+
 ]]></content>
   </entry>
   

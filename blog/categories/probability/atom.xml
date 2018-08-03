@@ -4,7 +4,7 @@
   <title><![CDATA[Category: probability, | Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/blog/categories/probability/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-08-02T21:16:51+08:00</updated>
+  <updated>2018-08-03T13:07:38+08:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -114,7 +114,7 @@ classical case), by the well known Holevo-Helstrom theorem:</p>
 
 <p><img src="/images/rrr.png" alt="alt text" /></p>
 
-<p>Note that, for classical distribution pair on the binary support $(P,Q)$ and P, given $d _{\rm TV} (P,Q)$ uniquely determines $Q$. But this is not the case for $(\rho _P, \rho _Q)$ given the trace distance. For instance, consider :</p>
+<p>Note that, for classical distribution pair on the binary support $(P,Q)$ and P, given $d _{\rm TV} (P,Q)$ uniquely determines mode collapse. But this is not the case for $(\rho _P, \rho _Q)$ given the trace distance. For instance, consider :</p>
 
 <p>\begin{eqnarray}
 &amp;&amp; \rho _{P} = 
@@ -149,6 +149,44 @@ classical case), by the well known Holevo-Helstrom theorem:</p>
 
 <h3 id="two-dimensional-quantum-state--bloch-representation">Two dimensional quantum state : Bloch representation</h3>
 
+<p>Any two-dimensional quantum state $\rho$ (pure or mixed) can be represented in the
+Bloch representation:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \rho = \frac{\mathbb{1} + \vec{r} \cdot \vec{\sigma}}{2} \newline
+&amp;&amp; \vec{r} \in \mathbb{R}^3 \; , \; \Vert \vec{r} \Vert _2 \leq 1 \newline
+&amp;&amp; \vec{\sigma} = (\sigma _x, \sigma _y, \sigma _z)
+\end{eqnarray}</p>
+
+<p>where $(\sigma _x, \sigma _y, \sigma _z)$ are the Pauli matrices. When $\vec{r} = \vec{0}$, it’s called a completely mixed state; when $\Vert \vec{r} \Vert _2 = 1$, it’s pure state. The first quantum example in the previous section is a two pure state ($\rho _{Q _1} \; , \; \rho _{Q _2}$) to one completely mixed state ($\rho _P$) case. The following theorem states that $d _1(\rho _{P} ^m, \rho ^m)$ is the same for all $\rho $ with the same $\Vert \vec{r} \Vert _2$.</p>
+
+<div class="theorem">
+Let $\rho _0 = \frac{\mathbb{1}}{2}$, and $\rho _r = \frac{\mathbb{1} + \vec{r} \cdot \vec{\sigma}}{2}$. Then given $m \geq 1$,  $d _1 (\rho _0 ^m, \rho _r ^m)$ is the same for all fixed length $\vec{r}$. 
+</div>
+
+<div class="proof">
+The proof follows from the fact that trace distance is invariant under unitary operation: $d _1(\rho _0, \rho _r) = d _1(U ^{\ast} \rho _0 U, U ^{\ast} \rho _r U)$, and since unitary operation (rotation operation ) don't change the vector representation length on Bloch sphere, we have that $d _1(\rho _0 , \rho _r) = d _1(\rho _0, U ^{\ast} \rho _r U) = d _1(\rho _0, \rho _{\forall \Vert \vec{r}\Vert _2 = r})$. 
+</div>
+
+<p>The next theorem we work on the explicit answer of $d _1 (\rho _0, \rho _r)$.</p>
+
+<div class="theorem">
+\begin{eqnarray}
+d _1 (\rho _0 ^m, \rho _r ^m) = \frac{1}{2} \cdot \sum _{k = 0} ^{m} {m \choose k} \vert (\frac{\Vert \vec{r} \Vert _2 + 1}{2})^{m-k}( \frac{1 - \Vert \vec{r} \Vert _2}{2})^k - \frac{1}{2 ^m}\vert
+\end{eqnarray}
+</div>
+
+<p>One can check that when $\Vert \vec{r} \Vert _2 = 1$, $d _1(\rho _0 ^m , \rho _r ^m) = 1 - \frac{1}{2 ^m}$, which coincides with the result in the previous section.</p>
+
+<p>To further boound the distance betwenn arbitrary states $d _1 (\rho _P ^m, \rho _Q ^m)$, one can naively adopt a loose bound from triangular inequality:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \vert d _1( \rho _0 ^m , \rho _P ^m) - d _1(\rho _0 ^m, \rho _Q ^m)\vert \leq d _1( \rho _P ^m, \rho _Q ^m) \leq d _1(\rho _0 ^m, \rho _P ^m) + d _1(\rho _0 ^m, \rho _Q ^m) 
+\end{eqnarray}</p>
+
+<p>Let’s check how this bound work for the example in the previous seciton, where $\rho _P $ is some state generated from $\Vert \vec{r} \Vert _2 = 0.5$, and $d _1(\rho _P, \rho _x) = 0.25$. For the two cases $\rho _{x _1}\; , \; \rho _{x _2}$that the lower bound is almost achieved, we can plot their bound region compare to all the possible $d _1(\rho _P ^m, \rho _x ^m)$ :</p>
+
+<p><img src="/images/preder.png" alt="alt text" /></p>
 ]]></content>
   </entry>
   

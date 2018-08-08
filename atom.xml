@@ -4,7 +4,7 @@
   <title><![CDATA[Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-08-03T13:07:38+08:00</updated>
+  <updated>2018-08-07T20:30:59+08:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -84,9 +84,6 @@ Maziero</a> for trace distance:</p>
 
 <h3 id="a-quantum-counterpart">A Quantum Counterpart</h3>
 
-<p>Before heading toward discussion, it’s worthwhile to reformulate the
-above statements and definitions in a quantum sense.</p>
-
 <p>In the quantum paradigm, the discrete probability distribution is replaced by the density matrix $\rho$, which is a positive semidefinite matrix with trace one. When the matrix is diagonal, it’s reduced back to the classical probability distribution.</p>
 
 <p>For a classical distribution, calculating $P(S)$ for some region $S$ is
@@ -126,24 +123,84 @@ classical case), by the well known Holevo-Helstrom theorem:</p>
 
 <p>($\epsilon, \delta$)- mode collapse can be rephrased in a quantum manner. State pair $(\rho _{P}, \rho _{Q})$ has ($\epsilon, \delta$) -mode collapse if there exist a measurement operator $\mu(a)$ with $a \in \mathcal{A}$ for some collection, such that $\langle \mu (a), \rho _{P}\rangle \geq \delta$ and $\langle \mu (a), \rho _{Q} \rangle \leq \epsilon$.</p>
 
-<p>In the next section, we starts by calculating the total variance (trace distance) on some simple toy cases to gain some intuition.</p>
+<h3 id="theorem-statements">Theorem statements</h3>
 
-<h3 id="examples-classical-and-quantum-toy-case">Examples: Classical and quantum toy case</h3>
+<p>Before heading toward some examples in the next section, we first state the theorem by Zinan et.al:</p>
 
-<p>Consider discrete random variables $P = [ \frac{1}{3}, \frac{1}{3}, \frac{1}{3} ] \; , \; Q _1 = [ 0, \frac{1}{2}, \frac{1}{2} ] \; , \; Q _2 = [ \frac{1}{6}, \frac{2}{3}, \frac{1}{6} ]$. The total variance $d _{\rm TV}(P, Q _1) = d _{\rm TV}(P, Q _2) = \frac{1}{3}$. However, $(P, Q _1)$ exhibits $(0, \frac{1}{3})$-mode collapse while $(P, Q _2)$ doesn’t.</p>
+<div class="theorem">
+For all $ 0 \leq \tau \leq 1$ and positive integer $m$, given $d _p(P, Q) = \tau$, we have that:
+\begin{eqnarray}
+&amp;&amp; \mathop{\min} _{0 \leq \alpha \leq 1 - \tau} d _{p}(P _{\rm inner} (\alpha) ^m , Q _{\rm inner} (\alpha, \tau) ^m) \leq d _p (P ^m, Q ^m) \leq 1 - (1- \tau) ^m
+\end{eqnarray}
+where 
+\begin{eqnarray}
+&amp;&amp; P _{\rm inner} (\alpha) = [1 - \alpha, \alpha] \newline
+&amp;&amp; Q _{\rm inner} (\alpha, \tau) = [1 - \alpha - \tau, \alpha + \tau]
+\end{eqnarray}
 
-<p>Now let’s calculate the distance for the product distribution. Carefully think about positions where the probability mass differs, we get:</p>
+Meanwhile, if $(P,Q)$ has $(\epsilon, \delta) -$ mode collapse, then given $d _p (P, Q) = \tau \leq \delta - \epsilon$, we have that:
+\begin{eqnarray}
 
-<p>\begin{eqnarray}
-&amp;&amp; d _{\rm TV}(P^m, Q _1^m) = \frac{1}{2} \cdot (2^m ((\frac{1}{2})^m - (\frac{1}{3}) ^m ) + (3^m - 2^m)(\frac{1}{3})^m ) = 1 - (\frac{2}{3})^m \newline
-&amp;&amp; d _{\rm TV}(P^m, Q _2^m) =\frac{1}{2} \cdot \sum _{i =0} ^m { m \choose i}\;2^{m -i}\; |(\frac{2}{3})^i (\frac{1}{6})^{m - i} - (\frac{1}{3})^m| 
-\end{eqnarray}</p>
+&amp;&amp; L _1(\epsilon, \delta, \tau, m)\leq d _p (P ^m, Q ^m) \leq 1 - (1- \tau) ^m 
+\end{eqnarray}
 
-<p><img src="http://slicerkao.github.io/images/rrr.png" alt="alt text" /></p>
+with
 
-<p>Note that, for classical distribution pair on the binary support $(P,Q)$ and P, given $d _{\rm TV} (P,Q)$ uniquely determines mode collapse. But this is not the case for $(\rho _P, \rho _Q)$ given the trace distance. For instance, consider :</p>
+\begin{eqnarray}
+&amp;&amp; P _{\rm inner1}(\delta ,  \alpha) = [\delta, 1 - \alpha - \delta , \alpha]  \newline
+&amp;&amp; Q _{\rm inner1}(\epsilon, \alpha, \tau) = [\epsilon, 1- \alpha -\tau -
+\epsilon, \alpha + \tau] \newline
+&amp;&amp; P _{\rm inner2} (\alpha) = [1 - \alpha, \alpha] \newline
+&amp;&amp; Q _{\rm inner2} (\alpha, \tau) = [1 - \alpha - \tau, \alpha + \tau] \newline
+&amp;&amp; L _1 (\epsilon , \delta, \tau, m) =  {\rm min} \big( \mathop{\min} _{0 \leq \alpha \leq 1 - \frac{\tau \delta}{\delta - \epsilon}} d _{p}(P _{\rm inner1} (\delta ,\alpha) ^m , Q _{\rm inner1} ( \epsilon, \alpha, \tau) ^m) , \mathop{\min} _{1 - \frac{\tau \delta}{\delta - \epsilon} \leq \alpha \leq 1- \tau} d _{p}(P _{\rm inner2} (\delta ,\alpha) ^m , Q _{\rm inner2} ( \epsilon, \alpha, \tau) ^m)\big) 
+\end{eqnarray}
 
-<p>\begin{eqnarray}
+Finally, if $(P,Q)$ has no $(\epsilon, \delta) -$ mode collapse, then given $d _p(P,Q) = \tau$, we have three different cases :
+
+(1  If $0 \leq \tau &lt; \delta - \epsilon$, then the upper and the lower bound follws the first unconstrained one.
+
+(2  If $\delta + \epsilon \leq 1$ and $\delta -\epsilon \leq \tau \leq (\delta  -\epsilon)/(\delta + \epsilon)$ we have:
+
+\begin{eqnarray}
+&amp;&amp; U _1(\epsilon , \delta, \tau, m) \leq d _p(P ^m, Q ^m) \leq L _2(\tau, m)
+\end{eqnarray}
+
+with
+
+\begin{eqnarray}
+&amp;&amp; P _{\rm outer1} (\epsilon, \delta, \alpha, \beta , \tau) = [\frac{\alpha (\delta - \epsilon) - \epsilon \tau}{\alpha - \epsilon}, \frac{\alpha(\alpha + \tau - \delta)}{\alpha - \epsilon}, 1 - \tau -\alpha - \beta, \beta, 0] \newline
+&amp;&amp; Q _{\rm outer2}(\epsilon, \delta, \alpha, \beta, \tau) = [0, \alpha, 1 - \tau -\alpha -\beta, \frac{\beta (\beta + \tau - \delta)}{\beta - \epsilon}, \frac{\beta(\delta - \epsilon) - \epsilon \tau}{\beta - \epsilon}] \newline
+&amp;&amp; U _1(\epsilon, \delta, \tau, m) = \mathop{\max} _{\alpha + \beta \leq 1 - \tau, \frac{\epsilon \tau}{\delta -\epsilon} \leq \alpha, \beta} d _p (P _{\rm outer1} (\epsilon, \delta, \alpha, \beta, \tau) ^m , Q _{\rm outer1} (\epsilon, \delta, \alpha, \beta, \tau) ^m) \newline
+&amp;&amp; L _2(\tau, m) = \mathop{\min} _{\frac{\epsilon \tau}{\delta - \epsilon} \leq  \alpha \leq 1 - \frac{\delta \tau}{\delta - \epsilon}} d _p(P _{\rm inner} (\alpha) ^m, Q _{\rm inner} (\alpha,  \tau) ^m)
+\end{eqnarray}
+
+(3 If $\delta + \epsilon &gt; 1$ and $\delta  - \epsilon \leq \tau \leq (\delta - \epsilon)/(2 -\delta - \epsilon)$, then we have:
+
+\begin{eqnarray}
+&amp;&amp; U _2(\epsilon , \delta, \tau, m) \leq d _p(P ^m, Q ^m) \leq L _3(\tau, m)
+\end{eqnarray}
+
+with
+
+\begin{eqnarray}
+&amp;&amp; P _{\rm outer2} (\epsilon, \delta, \alpha, \beta , \tau) = [\frac{\alpha (\delta - \epsilon) - (1 - \delta) \tau}{\alpha - (1- \delta)}, \frac{\alpha(\alpha + \tau - (1 - \epsilon))}{\alpha - (1 - \delta)}, 1 - \tau -\alpha - \beta, \beta, 0] \newline
+&amp;&amp; Q _{\rm outer2}(\epsilon, \delta, \alpha, \beta, \tau) = [0, \alpha, 1 - \tau -\alpha -\beta, \frac{\beta (\beta + \tau - (1 - \epsilon))}{\beta - (1 - \delta)}, \frac{\beta(\delta - \epsilon) - (1 - \delta) \tau}{\beta - (1 - \delta)}] \newline
+&amp;&amp; U _2(\epsilon, \delta, \tau, m) = \mathop{\max} _{\alpha + \beta \leq 1 - \tau, \frac{(1 - \delta) \tau}{\delta -\epsilon} \leq \alpha, \beta} d _p (P _{\rm outer2} (\epsilon, \delta, \alpha, \beta, \tau) ^m , Q _{\rm outer2} (\epsilon, \delta, \alpha, \beta, \tau) ^m) \newline
+&amp;&amp; L _3(\tau, m) = \mathop{\min} _{\frac{(1-\delta) \tau}{\delta - \epsilon} \leq  \alpha \leq 1 - \frac{(1 - \epsilon) \tau}{\delta - \epsilon}} d _p(P _{\rm inner} (\alpha) ^m, Q _{\rm inner} (\alpha , \tau) ^m)
+\end{eqnarray}
+
+
+</div>
+
+<h3 id="examples-binary-support">Examples: Binary support</h3>
+<p>Consider distribution on a binary support. Given total variance, there’re two possible distribution pair. For instance,  $P = [0.4, 0.6], Q _1 = [0.3, 0.7], Q _2 = [0.5, 0.5]$, we have that $d _{p} (P,Q _1) = d _p (P, Q _2) = 0.1$, while $(P,Q _1)$ exhibits $(0.3 , 0.4) - $ mode collapse but $(P, Q _2)$ has no such mode collapse. Note that $(P, Q _2)$ has $(0.5, 0.6) - $ mode collapse and $(P, Q _1)$ has no such mode collapse. The simulation result is given below :</p>
+
+<p><img src="http://slicerkao.github.io/images/rrrr.png" alt="alt text" /></p>
+
+<p>As for the quantum case, things start to become more ineteresting. First, a two dimensional quantum state has three degree of freedom, which makes all the $\rho _x$ with the same $d _1(\rho, \rho _x)$ to be more than that of the classical case. Second, there are more possibilities (e.g. all the density matrices) for the mode collapse ‘region’ than the classical case ($\mu _0 = \vert 0 \rangle \langle 0 \vert \; , \; \mu _1 = \vert 1 \rangle \langle 1 \vert$).</p>
+
+<p>For example, 
+\begin{eqnarray}
 &amp;&amp; \rho _{P} = 
 \begin{pmatrix}
 \frac{1}{2} &amp; 0 \newline
@@ -161,23 +218,14 @@ classical case), by the well known Holevo-Helstrom theorem:</p>
 \end{pmatrix}
 \end{eqnarray}</p>
 
-<p>The trace distance $0.5 \cdot \Vert \rho _{P} - \rho _{Q _1} \Vert _1 = 0.5 \cdot \Vert \rho _{P} - \rho _{Q _2} \Vert _1 = 0.5 $. However, $\rho _{Q _1}$ is a pure state, while $\rho _{Q _2}$ is a classical probablistic state. Also, given  $\mu (0) = \vert 0 \rangle \langle 0 \vert \; , \; \mu (1) = \vert 1 \rangle \langle 1 \vert$ , $(\rho _{P}, \rho _{Q _2})$ exhibits $(0, 1/2)$-mode collapse while $(\rho _{P}, \rho _{Q _1})$ doesn’t. However, trace distance $\Vert  \rho _{P}^m, \rho _{Q _1} ^m \Vert _1$ and $\Vert \rho _{P}^m, \rho _{Q _2} ^m\Vert _1$does not split as $m$ increases. In fact, careful calculation leads to :
+<p>The trace distance $0.5 \cdot \Vert \rho _{P} - \rho _{Q _1} \Vert _1 = 0.5 \cdot \Vert \rho _{P} - \rho _{Q _2} \Vert _1 = 0.5 $. Now classically, given  $\mu (0) = \vert 0 \rangle \langle 0 \vert \; , \; \mu (1) = \vert 1 \rangle \langle 1 \vert$ , $(\rho _{P}, \rho _{Q _2})$ exhibits $(0, 1/2)$-mode collapse while $(\rho _{P}, \rho _{Q _1})$ doesn’t. However, trace distance $d _1 (  \rho _{P}^m, \rho _{Q _1} ^m )$ and $d _1( \rho _{P}^m, \rho _{Q _2} ^m )$does not split as $m$ increases. In fact, careful calculation leads to :
 \begin{eqnarray}
 &amp;&amp; d _1(\rho _P ^m, \rho _{Q _1} ^m) = d _2(\rho _P ^m, \rho _{Q _2} ^m ) = (1 - \frac{1}{2 ^m})
 \end{eqnarray}</p>
 
 <p><img src="http://slicerkao.github.io/images/re-1.png" alt="alt text" /></p>
 
-<p>But this aligment in the growth of trace distance is not universal among all the two dimensional quantum states. The figure below shows the possible region of $d _1(\rho ^n, \rho _x ^n)$ among all possible $\rho _x$ such that $d _1(\rho, \rho _x ) = 0.25$, and $\rho$ is randomly selected on a $0.5-$ radius Bloch sphere.</p>
-
-<p><img src="http://slicerkao.github.io/images/re.png" alt="alt text" /></p>
-
-<p>From the above experiments, we’ve seen that non-classical effect emerges even on a two-dimensional case. Thus, we should first analyze the two dimensional quantum state to understand when the split happens, and how it’s associated with the mode collpase definition.</p>
-
-<h3 id="two-dimensional-quantum-state--bloch-representation">Two dimensional quantum state : Bloch representation</h3>
-
-<p>Any two-dimensional quantum state $\rho$ (pure or mixed) can be represented in the
-Bloch representation:</p>
+<p>But if we consider the quantum definition for mode collapse, we can see that both $(\rho _P, \rho _{Q _1})$ and $(\rho _P, \rho _{Q _2})$ exhibits $(0 , 1/2)$ mode collapse, and the latter mode collapse is achieved when $\mu = \begin{pmatrix} \frac{1}{2} &amp; \frac{-1}{2} \newline \frac{-1}{2} &amp; \frac{1}{2}\end{pmatrix}$. In fact, under the Bloch sphere representation, $(\rho _P, \rho _{Q _1})$ and $(\rho _P, \rho _{Q _2})$ are identical up to a unitary transform. To be more explicit, any two-dimensional quantum state $\rho$ (pure or mixed) can be represented in the Bloch representation:</p>
 
 <p>\begin{eqnarray}
 &amp;&amp; \rho = \frac{\mathbb{1} + \vec{r} \cdot \vec{\sigma}}{2} \newline
@@ -185,35 +233,42 @@ Bloch representation:</p>
 &amp;&amp; \vec{\sigma} = (\sigma _x, \sigma _y, \sigma _z)
 \end{eqnarray}</p>
 
-<p>where $(\sigma _x, \sigma _y, \sigma _z)$ are the Pauli matrices. When $\vec{r} = \vec{0}$, it’s called a completely mixed state; when $\Vert \vec{r} \Vert _2 = 1$, it’s pure state. The first quantum example in the previous section is a two pure state ($\rho _{Q _1} \; , \; \rho _{Q _2}$) to one completely mixed state ($\rho _P$) case. The following theorem states that $d _1(\rho _{P} ^m, \rho ^m)$ is the same for all $\rho $ with the same $\Vert \vec{r} \Vert _2$.</p>
+<p>where $(\sigma _x, \sigma _y, \sigma _z)$ are the Pauli matrices. When $\vec{r} = \vec{0}$, it’s called a completely mixed state; when $\Vert \vec{r} \Vert _2 = 1$, it’s pure state. Notably, the trace distance between two arbitrary two-dimensional quantum state is:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; d _1(\rho _1, \rho _2) = \frac{\Vert \vec{r} _1 - \vec{r} _2\Vert _2}{2}
+\end{eqnarray}</p>
+
+<p>Also, trace distance is unitarily invariant : $d _1(\rho _1, \rho _2) = d _1(U ^{\ast} \rho _1 U, U ^{\ast} \rho _2 U)$. So the above example is a special case for the following theorem:</p>
 
 <div class="theorem">
-Let $\rho _0 = \frac{\mathbb{1}}{2}$, and $\rho _r = \frac{\mathbb{1} + \vec{r} \cdot \vec{\sigma}}{2}$. Then given $m \geq 1$,  $d _1 (\rho _0 ^m, \rho _r ^m)$ is the same for all fixed length $\vec{r}$. 
-</div>
-
-<div class="proof">
-The proof follows from the fact that trace distance is invariant under unitary operation: $d _1(\rho _0, \rho _r) = d _1(U ^{\ast} \rho _0 U, U ^{\ast} \rho _r U)$, and since unitary operation (rotation operation ) don't change the vector representation length on Bloch sphere, we have that $d _1(\rho _0 , \rho _r) = d _1(\rho _0, U ^{\ast} \rho _r U) = d _1(\rho _0, \rho _{\forall \Vert \vec{r}\Vert _2 = r})$. 
-</div>
-
-<p>The next theorem we work on the explicit answer of $d _1 (\rho _0, \rho _r)$.</p>
-
-<div class="theorem">
+$\; \rho _0 = \frac{\mathbb{1}}{2}$ and $\rho _r$ is a density matrix with $\vec{r}$. Then, 
 \begin{eqnarray}
 d _1 (\rho _0 ^m, \rho _r ^m) = \frac{1}{2} \cdot \sum _{k = 0} ^{m} {m \choose k} \vert (\frac{\Vert \vec{r} \Vert _2 + 1}{2})^{m-k}( \frac{1 - \Vert \vec{r} \Vert _2}{2})^k - \frac{1}{2 ^m}\vert
 \end{eqnarray}
 </div>
 
-<p>One can check that when $\Vert \vec{r} \Vert _2 = 1$, $d _1(\rho _0 ^m , \rho _r ^m) = 1 - \frac{1}{2 ^m}$, which coincides with the result in the previous section.</p>
+<p>One can check that when $\Vert \vec{r} \Vert _2 = 1$, $d _1(\rho _0 ^m , \rho _r ^m) = 1 - \frac{1}{2 ^m}$, which coincides with the result.</p>
 
-<p>To further boound the distance betwenn arbitrary states $d _1 (\rho _P ^m, \rho _Q ^m)$, one can naively adopt a loose bound from triangular inequality:</p>
+<p>To show a signficant distance split in 2 dimensional cases, we consider the example in the following figure. It shows the possible region of $d _1(\rho ^n, \rho _x ^n)$ among all possible $\rho _x$ such that $d _1(\rho, \rho _x ) = 0.25$, and $\rho$ is randomly selected on a $0.5-$ radius Bloch sphere.</p>
 
-<p>\begin{eqnarray}
-&amp;&amp; \vert d _1( \rho _0 ^m , \rho _P ^m) - d _1(\rho _0 ^m, \rho _Q ^m)\vert \leq d _1( \rho _P ^m, \rho _Q ^m) \leq d _1(\rho _0 ^m, \rho _P ^m) + d _1(\rho _0 ^m, \rho _Q ^m) 
-\end{eqnarray}</p>
+<p><img src="http://slicerkao.github.io/images/re.png" alt="alt text" /></p>
 
-<p>Let’s check how this bound work for the example in the previous seciton, where $\rho _P $ is some state generated from $\Vert \vec{r} \Vert _2 = 0.5$, and $d _1(\rho _P, \rho _x) = 0.25$. For the two cases $\rho _{x _1}\; , \; \rho _{x _2}$that the lower bound is almost achieved, we can plot their bound region compare to all the possible $d _1(\rho _P ^m, \rho _x ^m)$ :</p>
+<p>To coincide the split with Zinan’s work, we adopts the geometric approach as in Zinan’s original paper. We’d like to see what is the quantum counterpart and characterisitc of the so called mode collapse region.</p>
 
-<p><img src="http://slicerkao.github.io/images/preder.png" alt="alt text" /></p>
+<h3 id="mode-collapse-region">Mode collapse region</h3>
+
+<p>Mode collapse region is defined as :</p>
+
+<div class="definition">
+Let $\rm conv$ denotes the convex hull of a set. Then the mode collapse region
+is defined as:
+\begin{eqnarray}
+&amp;&amp; \mathcal{R} (P,Q) = {\rm conv} \big( (\epsilon, \delta) | \delta  &gt; \epsilon
+{\rm and \; P \;, \;Q \; has } (\epsilon , \delta)- {\rm mode \; collapse}\big)
+\end{eqnarray}
+</div>
+
 ]]></content>
   </entry>
   

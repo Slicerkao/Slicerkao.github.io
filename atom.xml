@@ -4,7 +4,7 @@
   <title><![CDATA[Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-08-07T20:30:59+08:00</updated>
+  <updated>2018-08-20T15:21:28-04:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -121,7 +121,7 @@ classical case), by the well known Holevo-Helstrom theorem:</p>
 
 <p>where $(M,N)$ are both positive semidefinite, and $\Pi _{\rm im \; M} $ is the projection operator onto the image of $M$.  This corresponds to the optimal $S$ given by $d _{p}(\pi _1 P, \pi _2 Q)$ in the case $\rho _{P} \; \rho _{Q}$ are both diagonal.</p>
 
-<p>($\epsilon, \delta$)- mode collapse can be rephrased in a quantum manner. State pair $(\rho _{P}, \rho _{Q})$ has ($\epsilon, \delta$) -mode collapse if there exist a measurement operator $\mu(a)$ with $a \in \mathcal{A}$ for some collection, such that $\langle \mu (a), \rho _{P}\rangle \geq \delta$ and $\langle \mu (a), \rho _{Q} \rangle \leq \epsilon$.</p>
+<p>($\epsilon, \delta$)- mode collapse can be rephrased in a quantum manner. State pair $(\rho _{P}, \rho _{Q})$ has ($\epsilon, \delta$) -mode collapse if there exist a measurement operator $\mathbb{0} \leq \mu(a) \leq \mathbb{1}$ with $a \in \mathcal{A}$ for some collection, such that $\langle \mu (a), \rho _{P}\rangle \geq \delta$ and $\langle \mu (a), \rho _{Q} \rangle \leq \epsilon$.</p>
 
 <h3 id="theorem-statements">Theorem statements</h3>
 
@@ -265,9 +265,27 @@ Let $\rm conv$ denotes the convex hull of a set. Then the mode collapse region
 is defined as:
 \begin{eqnarray}
 &amp;&amp; \mathcal{R} (P,Q) = {\rm conv} \big( (\epsilon, \delta) | \delta  &gt; \epsilon
-{\rm and \; P \;, \;Q \; has } (\epsilon , \delta)- {\rm mode \; collapse}\big)
+\; {\rm and \; P \;, \;Q \; has } \; (\epsilon , \delta)- {\rm mode \; collapse}\big)
 \end{eqnarray}
 </div>
+
+<p>Likewise, a quantum counterpart for mode collapse region can be defined as:</p>
+
+<div class="definition">
+Let $\rm conv$ denotes the convex hull of a set. Then the quantum mode collapse region
+is defined as:
+\begin{eqnarray}
+&amp;&amp; \mathcal{R} _q (\rho _P, \rho _Q) = {\rm conv} \big( (\epsilon, \delta) | \delta  &gt; \epsilon
+ \; {\rm and \; \rho _P \;, \;\rho _Q \; has } \; (\epsilon , \delta)- {\rm mode \; collapse}\big)
+\end{eqnarray}
+</div>
+
+<p>Let’s investigate both the classical and quantum mode collaspe region for binary support distribution. Consider the example $(P,Q_1)$ in the previous section, the classical mode collapse region is plotted as below:</p>
+
+<p><img src="http://slicerkao.github.io/images/classical.png" alt="alt text" /></p>
+
+<p>And the quantum mode collapse region is plotted as below:
+<img src="http://slicerkao.github.io/images/quantum.png" alt="alt text" /></p>
 
 ]]></content>
   </entry>

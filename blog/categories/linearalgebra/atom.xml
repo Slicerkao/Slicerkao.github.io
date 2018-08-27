@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linearalgebra | Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/blog/categories/linearalgebra/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-08-20T15:21:28-04:00</updated>
+  <updated>2018-08-27T09:13:43-04:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -223,7 +223,7 @@ d _1 (\rho _0 ^m, \rho _r ^m) = \frac{1}{2} \cdot \sum _{k = 0} ^{m} {m \choose 
 
 <p>One can check that when $\Vert \vec{r} \Vert _2 = 1$, $d _1(\rho _0 ^m , \rho _r ^m) = 1 - \frac{1}{2 ^m}$, which coincides with the result.</p>
 
-<p>To show a signficant distance split in 2 dimensional cases, we consider the example in the following figure. It shows the possible region of $d _1(\rho ^n, \rho _x ^n)$ among all possible $\rho _x$ such that $d _1(\rho, \rho _x ) = 0.25$, and $\rho$ is randomly selected on a $0.5-$ radius Bloch sphere.</p>
+<p>To show a signficant distance split in 2 dimensional cases, we consider the example in the following figure. It shows the possible region of $d _1(\rho ^m, \rho _x ^m)$ among all possible $\rho _x$ such that $d _1(\rho, \rho _x ) = 0.25$, and $\rho$ is randomly selected on a $0.5-$ radius Bloch sphere.</p>
 
 <p><img src="/images/re.png" alt="alt text" /></p>
 
@@ -257,8 +257,47 @@ is defined as:
 
 <p><img src="/images/classical.png" alt="alt text" /></p>
 
-<p>And the quantum mode collapse region is plotted as below:
-<img src="/images/quantum.png" alt="alt text" /></p>
+<p>And the quantum mode collapse region is plotted as below:</p>
+
+<p><img src="/images/quantum.png" alt="alt text" /></p>
+
+<p>As from the experiment result, both the classical and quantum mode collapse
+region are the same. In fact, we can prove the following theorem:</p>
+
+<div class="theorem">
+For arbitrary classical distribution pair $(P, Q)$ and their corresponding (diagonal) quantum state $(\rho _P, \rho _Q)$, we have:
+
+\begin{eqnarray}
+&amp;&amp; \mathcal{R}(P,Q) = \mathcal{R} _q (\rho _P, \rho _Q)
+\end{eqnarray}
+</div>
+
+<p>How do we associate the mode collapse region with the divergence bound ? In
+Zinan’s work, he first observe that if $\mathcal{R} (P _1,Q _1) \subset
+\mathcal{R} (P _2, Q _2) $, then $d _p(P _1,Q _1) \leq d _p(P _2, Q _2)$. Thus, the problem of bounding divergence is associated with bounding the mode collpase region.</p>
+
+<p>Furthermore, a key lemma for bounding the mode collapse region is resulted from an implication of the Blackwell’s theorem :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \mathcal{R} (P _1, Q _1) \subset \mathcal{R} (P _2, Q _2) \rightarrow
+\mathcal{R} (P _1 ^m, Q _1 ^m) \subset \mathcal{R} (P _2 ^m, Q _2 ^m) \; \forall \; m
+\end{eqnarray}</p>
+
+<p>Interestingly, a quantum counterpart of the Blackwell’s theorem: _ <a href="https://arxiv.org/abs/quant-ph/0410233">the Shmaya’s theorem</a> leads to a same implication for quantum mode collapse region. We can prove that:</p>
+
+<div class="theorem">
+\begin{eqnarray}
+&amp;&amp; \mathcal{R} _q (\rho _{P _1} , \rho _{Q _1}) \subset \mathcal{R} _q (\rho _{P _2}, \rho _{Q _2}) \rightarrow
+\mathcal{R} _q( \rho _{P _1} ^m, \rho _{Q _1} ^m) \subset \mathcal{R} _q (\rho _{P _2} ^m, \rho _{Q _2} ^m) \; \forall \; m
+\end{eqnarray}
+
+</div>
+
+<p>Combining the above two theorem, the bound obtained by Zinan in the classical literature is actually applicable for the quantum case. For instance, consider the last experiment in the previous section, we can almost tightly bound all the possible value region for $d _1 (\rho ^m, \rho _x ^m )$ with $\rho _x$ satisfying $d _1(\rho, \rho _x) = 0.25$:</p>
+
+<p><img src="/images/preder.png" alt="alt text" /></p>
+
+<p>As the result, all the split phenomenon caused by mode collapse in the classical setting can be adopted in the quantum counterpart.</p>
 
 ]]></content>
   </entry>

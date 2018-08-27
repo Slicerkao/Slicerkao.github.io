@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linearalgebra | Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/blog/categories/linearalgebra/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-08-27T09:13:43-04:00</updated>
+  <updated>2018-08-27T09:36:05-04:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -212,7 +212,7 @@ with
 &amp;&amp; d _1(\rho _1, \rho _2) = \frac{\Vert \vec{r} _1 - \vec{r} _2\Vert _2}{2}
 \end{eqnarray}</p>
 
-<p>Also, trace distance is unitarily invariant : $d _1(\rho _1, \rho _2) = d _1(U ^{\ast} \rho _1 U, U ^{\ast} \rho _2 U)$. So the above example is a special case for the following theorem:</p>
+<p>Also, trace distance is unitarily invariant : $d _1(\rho _1, \rho _2) = d _1(U  \rho _1 U ^{\ast}, U  \rho _2 U ^{\ast})$. So the above example is a special case for the following theorem:</p>
 
 <div class="theorem">
 $\; \rho _0 = \frac{\mathbb{1}}{2}$ and $\rho _r$ is a density matrix with $\vec{r}$. Then, 

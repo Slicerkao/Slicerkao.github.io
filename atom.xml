@@ -4,7 +4,7 @@
   <title><![CDATA[Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2019-11-08T14:21:34-05:00</updated>
+  <updated>2019-11-08T14:26:51-05:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -18,7 +18,14 @@
     <link href="http://slicerkao.github.io/blog/2019/11/08/slide-share-quantum-101/"/>
     <updated>2019-11-08T13:36:58-05:00</updated>
     <id>http://slicerkao.github.io/blog/2019/11/08/slide-share-quantum-101</id>
-    <content type="html"><![CDATA[<p style="text-align: center;">
+    <content type="html"><![CDATA[<p>It’s always fun to organize knowledge and distill it to a simpler form. I’m happy to get a chance to share my understanding of quantum computation with a group of talented engineers, and I hope to deliver concepts with as much intuitive examples as possible.</p>
+
+<p>In this post, I share two of my quantum computation slides. The first one is quantum computation 101, which established foundation and intuitions of quantum computation. The second goes on to explore topics of machine learning and its’ interplay with quantum computation.</p>
+
+<p>Btw, some of the ‘puns’ or acronym used in the slides are purely mandarine, only to catch the attention of my chinese-speaking audiences.
+<!--more--></p>
+
+<p style="text-align: center;">
 <iframe src="https://www.slideshare.net/slideshow/embed_code/191749255 " width="595" height="446" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen=""></iframe> 
 </p>
 ]]></content>

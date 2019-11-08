@@ -4,7 +4,7 @@
   <title><![CDATA[Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-08-27T09:36:05-04:00</updated>
+  <updated>2019-11-08T13:40:07-05:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -14,28 +14,10 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Briefing: Compressed learning as an universal sparse dimensionality reduction and learning in the measurement domain]]></title>
-    <link href="http://slicerkao.github.io/blog/2018/07/22/study7/"/>
-    <updated>2018-07-22T15:48:44+08:00</updated>
-    <id>http://slicerkao.github.io/blog/2018/07/22/study7</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Study Note: Overparametrization can lead to acceleration]]></title>
-    <link href="http://slicerkao.github.io/blog/2018/07/22/study6/"/>
-    <updated>2018-07-22T14:51:47+08:00</updated>
-    <id>http://slicerkao.github.io/blog/2018/07/22/study6</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Study Note: Recommendation system in both classical and quantum way]]></title>
-    <link href="http://slicerkao.github.io/blog/2018/07/22/study5/"/>
-    <updated>2018-07-22T10:42:04+08:00</updated>
-    <id>http://slicerkao.github.io/blog/2018/07/22/study5</id>
+    <title type="html"><![CDATA[Slide share: Quantum 101]]></title>
+    <link href="http://slicerkao.github.io/blog/2019/11/08/slide-share-quantum-101/"/>
+    <updated>2019-11-08T13:36:58-05:00</updated>
+    <id>http://slicerkao.github.io/blog/2019/11/08/slide-share-quantum-101</id>
     <content type="html"><![CDATA[
 ]]></content>
   </entry>

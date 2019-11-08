@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: quantum, | Tr{Ceng Lou}]]></title>
+  <title><![CDATA[Category: quantum | Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/blog/categories/quantum/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2018-08-27T09:36:05-04:00</updated>
+  <updated>2019-11-08T13:40:07-05:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -14,11 +14,182 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Study Note: Recommendation system in both classical and quantum way]]></title>
-    <link href="http://slicerkao.github.io/blog/2018/07/22/study5/"/>
-    <updated>2018-07-22T10:42:04+08:00</updated>
-    <id>http://slicerkao.github.io/blog/2018/07/22/study5</id>
-    <content type="html"><![CDATA[
+    <title type="html"><![CDATA[Briefing: Quantum Adiabatic Search (2001)]]></title>
+    <link href="http://slicerkao.github.io/blog/2018/04/29/study-note-quantum-adiabatic-search-2001/"/>
+    <updated>2018-04-29T18:29:47+08:00</updated>
+    <id>http://slicerkao.github.io/blog/2018/04/29/study-note-quantum-adiabatic-search-2001</id>
+    <content type="html"><![CDATA[<p>In this post, a quantum adiabatic method applied to search problem is summarized and commented. All the following context is based on <a href="https://arxiv.org/abs/quant-ph/0107015">$\rm Quantum \, Search \, by \, Local \, Adiabatic \, Evolution$</a> from J$\acute{e}$r$\acute{e}$mie Roland and Nicolas J. Cerf.</p>
+
+<!--more-->
+
+<h3 id="adiabatic-theorem">Adiabatic Theorem</h3>
+
+<p>Given a time dependent Hamiltonian $H(t)$, let $\vert E_k \, ; t \rangle$ be the eigenstate of $H(t)$ such that:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; H(t)|E_k \, ; t\rangle = E_k(t)|E_k \, ; t\rangle
+\end{eqnarray}</p>
+
+<p>where $E_k$ denotes the k-th eigenvalue of the Hamiltonian. Also, define the minimum eigengap $g_{min}$ as:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; g_{min} = \mathop{\min}_{0 \leq t \leq T}|E_1(t)-E_0(t)| 
+\end{eqnarray}</p>
+
+<p>Then one version of the adiabatic theorem states that if $g_{min}$ within the evolution time $T$ is not too small (compared to the variation of the Hamiltonian), then the initial state $\vert E_0 \, ; t\rangle$ evolves to $\psi(T)$ that’s close to $\vert E_0 \, ; T\rangle$. Intuitively, larger eigengap implies less quantum transition from base state to the first activated state, and thus the wave fuction “stay” at the base state throughout the evolution.</p>
+
+<p>Formally, the variational quantity of $H$ is denoted by $\langle \frac{dH}{dt} \rangle_{1,0}$ as:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \langle \frac{dH}{dt} \rangle_{1,0} = \langle E_1;t | \frac{dH}{dt}|E_0;t\rangle
+\end{eqnarray}</p>
+
+<p>Then provided that</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \frac{\langle \frac{dH}{dt}\rangle_{1,0}}{g^2_{min}} \leq \epsilon
+\end{eqnarray}</p>
+
+<p>one could evolve the state $\vert E_0;0\rangle$ toward state $\psi(T)$ such that:</p>
+
+<p>\begin{eqnarray}                                                               <br />
+&amp;&amp; |\langle E_0;T|\psi(T)|^2 \geq 1- \epsilon^2
+\end{eqnarray}</p>
+
+<h3 id="a-construction-of-an-adiabatic-search-algorithm">A construction of an adiabatic search algorithm</h3>
+
+<p>Adiabatic thereom can  be appllied to construct a quantum search algorithm.
+Consider a problem to find $\vert m \rangle$ out of $N$ computational basis.  Let $\vert \psi_0 \rangle$ be a uniform superposition of computational basis:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; |\psi_0\rangle = \frac{1}{\sqrt{N}}\sum^N_{i=1}|i\rangle
+\end{eqnarray}</p>
+
+<p>Define two Hamiltonians $H_0$ and $H_m$ and their time dependent interpolation $H(t)$ as:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; H_0 = I - |\psi_0\rangle\langle\psi_0| \newline
+&amp;&amp; H_m = I - |m\rangle\langle m| \newline
+&amp;&amp; H(t) = (1-t/T)H_0 + t/T H_m
+\end{eqnarray}</p>
+
+<p>Note that $\vert\psi_0\rangle$ and $\vert m\rangle$ are the base states of $H_0$ and $H_m$. To have the adiabatic theorem hold, one need to impose the condition on the only adjustable parameter $T$. First, solve the eigen problem of $H(t)$:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; H(t)|E_k ; t\rangle = E_k |E_k; t\rangle \newline
+&amp;&amp; (I-(1-t/T)|\psi_0\rangle\langle \psi_0|-t/T|m\rangle\langle m|)|E_k ; t\rangle = E_k |E_k; t\rangle \newline
+\end{eqnarray}</p>
+
+<p>let $a_k=\langle\psi_0\vert E_k;t\rangle$, $b_k=\langle m \vert E_k;t\rangle$, and note that $\langle m \vert \psi_0\rangle = \frac{1}{\sqrt{N}}$, one obtain the following relations by applying the inner product of $\vert m\rangle$ and $\vert\psi_0\rangle$ to the above equation:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; (t/T-E_k)a_k = t/T\frac{1}{\sqrt{N}}b_k \newline
+&amp;&amp; (1-t/T-E_k)b_k = (1-t/T)\frac{1}{\sqrt{N}}a_k
+\end{eqnarray}</p>
+
+<p>Solving the eigenvalue, with $s = t/T$ one obtain the (degenerate) eigevalue of $H(t)$:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; E_0 = \frac{1}{2}(1-\sqrt{4(1-\frac{1}{N})s^2-4(1-\frac{1}{N})s+1}) \newline
+&amp;&amp; E_1 = \frac{1}{2}(1+\sqrt{4(1-\frac{1}{N})s^2-4(1-\frac{1}{N})s+1})
+\end{eqnarray}</p>
+
+<p>Then the eigengap $g$ is
+\begin{eqnarray}
+&amp;&amp; g = \sqrt{1-4\frac{N-1}{N}s(1-s)}
+\end{eqnarray}
+with minimum reached at $s=1/2$ with $g_{min}=1/\sqrt{N}$.</p>
+
+<p>Following up with the calculation of the variational quantity $\langle\frac{dH}{dt}\rangle_{1,0}$:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \langle\frac{dH}{dt}\rangle_{1,0} = \langle E_1;t|\frac{1}{T}(H_m - H_0)|E_0;t\rangle \newline
+&amp;&amp; = \langle E_1;t|\frac{1}{T}(|\psi_0\rangle\langle \psi_0| - |m\rangle \langle m|)|E_0;t\rangle \newline
+\end{eqnarray}</p>
+
+<p>It can be proven that the absolute value of this quantity is less than
+$\frac{1}{T}$. Thus,
+the adiabatic condition reads:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; T \geq N/\epsilon
+\end{eqnarray}</p>
+
+<p>which yields no benefit over classical algorithm.</p>
+
+<h3 id="a-variant-of-the-interpolation-rate-st">A variant of the interpolation rate s(t)</h3>
+
+<p>To achieve quantum speedup, notice that the adiabatic condition can be applied to a infinitesimal scale of time. That is, let $s(t)$ be an unknown function of $t$, and then impose the adiabatic condition:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp;\frac{ds}{dt} \leq \epsilon \frac{g^2(t)}{|\langle\frac{dH}{ds}\rangle_{1,0}|}
+\end{eqnarray}</p>
+
+<p>Along with previous calculation of the eigengap $g$, one can choose the
+following to have the local adiabatic condition hold :
+\begin{eqnarray}
+&amp;&amp; \frac{ds}{dt} = \epsilon g^2(t)
+\end{eqnarray}</p>
+
+<p>Solving $s(t)$ with boundary condition $s(0)=0, s(T)=1$, one obtain 
+\begin{eqnarray}
+&amp;&amp; T = \frac{\pi}{2\epsilon} \sqrt{N}
+\end{eqnarray}
+by taking $s = 1$ and $N \gg 1$. This achieve the Grover’s search performance as wanted.</p>
+
+<p>To prove the optimality of the choice $s(t)$, the search problem can be solved if the evolved answers of different target are sufficiently discriminable. That is, let $\vert\psi_m ;t \rangle$ and $\vert\psi_{m’};t\rangle$ be the volved state after time $t$ for search target $m$ and $m’$ respectively, we require that:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; 1- |\langle \psi_{m}; T| \psi_{m’}; T\rangle|^2 \geq \delta \; 
+\end{eqnarray}</p>
+
+<p>From Schrodinger’s equation, we have the followings:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; i \frac{d}{dt}|\psi_m ; t\rangle = (I - (1-s)|\psi_0\rangle\langle\psi_0| - s|m\rangle\langle m|)|\psi_m;t\rangle \newline
+&amp;&amp; i \frac{d}{dt}|\psi_m’ ; t\rangle = (I - (1-s)|\psi_0\rangle\langle\psi_0| - s|m’\rangle\langle m’|)|\psi_{m’};t\rangle 
+\end{eqnarray}</p>
+
+<p>with $\vert \psi_m ; 0 \rangle = \vert \psi_{m} ; 0 \rangle = \vert \psi_0 \rangle$ for some initial configuration. Now take the derivative of the objective with respect to the evolution time :</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \frac{d}{dt}[1 -  |\langle \psi_m ; t| \psi_{m’} ; t \rangle |^2 ] \newline
+&amp;&amp; = - \frac{d}{dt}  2 \langle \psi_m ; t| \psi_{m’} ; t \rangle  \langle \psi_{m’} ; t| \psi_{m} ; t \rangle  \newline
+&amp;&amp;  = {\rm Im} [\langle \psi_{m} ; t| (-s| m\rangle \langle m| + s |m’ \rangle\langle m’|) | \psi_{m’} ; t\rangle \langle \psi_{m’} ; t| \psi_{m} ; t \rangle]  \newline
+&amp;&amp; \leq 2 |\langle \psi_{m} ; t| (-s| m\rangle \langle m| + s |m’ \rangle\langle m’|) | \psi_{m’} ; t\rangle| \; | \langle \psi_{m’} ; t| \psi_{m} ; t \rangle|  \newline
+&amp;&amp; \leq  2[ |\langle \psi_{m} ; t| (-s| m\rangle \langle m|) | \psi_{m’} ; t\rangle | + |\langle \psi_{m} ; t| (-s| m’\rangle \langle m’|) | \psi_{m’} ; t\rangle |]<br />
+\end{eqnarray}</p>
+
+<p>Let $H_{m} = -s \vert m \rangle \langle m \vert $, summing the above objective for all $m$ and $m’$, we got:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \frac{d}{dt} \sum_{m, m’ = 1}^{N} [1 -  |\langle \psi_m ; t| \psi_{m’} ; t \rangle |^2 ] \newline
+&amp;&amp; \leq 4 \sum_{m, m’ = 1}^{N} |\langle \psi_m ; t| H_{m} | \psi_{m’} ; t \rangle |  \newline
+&amp;&amp; \leq 4 \sum_{m, m’ = 1}^{N} \Vert H_{m}| \psi_{m} ; t \rangle \Vert \Vert \psi_{m’} \Vert \newline
+&amp;&amp; = 4 N \sum_{m=1}^{N} \Vert H_{m}| \psi_{m} ; t \rangle \Vert<br />
+\end{eqnarray}</p>
+
+<p>To upper bound the last term, notice that $\sum_{m=1}^{N} \Vert H_m \vert \psi_m ; t\rangle\Vert^2 = s^2$ due to normalization condition. Thus by Cauchy inequality,</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \frac{d}{dt} \sum_{m, m’ = 1}^{N} [1 -  |\langle \psi_m ; t| \psi_{m’} ; t \rangle |^2 ] \newline
+&amp;&amp; \leq 4 N \sum_{m=1}^{N} \Vert H_{m}| \psi_{m} ; t \rangle \Vert \leq 4 N \sqrt{N} s   <br />
+\end{eqnarray}</p>
+
+<p>Notice that the above derivative is taken to leverage the Schrodinger’s
+equation. Finally, we discard the derivative and integrate the both side of the inequality:</p>
+
+<p>\begin{eqnarray}
+&amp;&amp; \sum_{m, m’ = 1}^{N} [1 -  |\langle \psi_m ; t| \psi_{m’} ; t \rangle |^2 ] \leq 4N \sqrt{N} \int_{0}^{T} s(t) dt \leq 4N \sqrt{N} T
+\end{eqnarray}</p>
+
+<p>With $\sum_{m, m’ = 1}^{N} [1 -  \vert \langle \psi_m ; t \vert \psi_{m’} ; t \rangle \vert ^2 ] \geq N^2\delta$, we’ve proven that $T \geq O(\frac{\sqrt{N}}{\delta})$.</p>
+
+<h3 id="comment">Comment</h3>
+
+<p>The original work consider the Hamiltonian with a certain form. Perhaps it’s possible to derive search algorithm by other interploations of Hamiltonian. Perhaps a class of Hamiltonian would guarantee speedup.</p>
+
+<p>Also, if take the adiabatic results to the reverse direction, what makes quantum evolution an adiabatic one ? Can similar result be applied to other update dynamic, like recent gradient descent in machine learning ?</p>
 ]]></content>
   </entry>
   

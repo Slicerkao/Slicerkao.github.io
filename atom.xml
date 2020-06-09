@@ -4,7 +4,7 @@
   <title><![CDATA[Tr{Ceng Lou}]]></title>
   <link href="http://slicerkao.github.io/atom.xml" rel="self"/>
   <link href="http://slicerkao.github.io/"/>
-  <updated>2019-11-09T12:25:54-05:00</updated>
+  <updated>2020-06-09T10:41:29+08:00</updated>
   <id>http://slicerkao.github.io/</id>
   <author>
     <name><![CDATA[Ping Sheng Kao]]></name>
@@ -14,10 +14,27 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Briefing: MIP=RE]]></title>
+    <link href="http://slicerkao.github.io/blog/2020/05/04/mip-equals-re/"/>
+    <updated>2020-05-04T02:17:34-04:00</updated>
+    <id>http://slicerkao.github.io/blog/2020/05/04/mip-equals-re</id>
+    <content type="html"><![CDATA[<p>Recently there’s a breakthrough in the quantum computational complexity research, which implies a fruitful of interesting results. As a beginer of quantum information, I thought it is worthy of “excerpting” some important ideas provdied in the original 160+ page paper.</p>
+
+<p>The following sections will be in accord with the original paper’s chapters, which includes both the background and some technical results.</p>
+
+<!--more-->
+
+<h3 id="back-ground--proof-system">Back ground : Proof system</h3>
+
+<blockquote><p>Quote string</p><footer><strong>[author[</strong> <cite>Source]] [Link] [Source_link_title]</cite></footer></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Slide share: Quantum 101]]></title>
-    <link href="http://slicerkao.github.io/blog/2019/11/08/slide-share-quantum-101/"/>
+    <link href="http://slicerkao.github.io/blog/2019/11/08/slide-share-quantum-101%20copy/"/>
     <updated>2019-11-08T13:36:58-05:00</updated>
-    <id>http://slicerkao.github.io/blog/2019/11/08/slide-share-quantum-101</id>
+    <id>http://slicerkao.github.io/blog/2019/11/08/slide-share-quantum-101 copy</id>
     <content type="html"><![CDATA[<p>It’s always fun to organize knowledge and distill it to a simpler form. I’m happy to get a chance to share my understanding of quantum computation with a group of talented engineers, and I hope to deliver concepts with as much intuitive examples as possible.</p>
 
 <p>In this post, I share two of my quantum computation slides. The first one is quantum computation 101, which established foundation and intuitions of quantum computation. The second goes on to explore topics of machine learning and its’ interplay with quantum computation.</p>
